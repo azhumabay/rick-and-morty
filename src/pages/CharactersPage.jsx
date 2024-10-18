@@ -1,9 +1,9 @@
-import { CharactersIcon } from "../Components/Icons";
+import Search from "../Components/Search";
 
 export default function CharactersPage() {
   return (
     <>
-      <h1>CharactersPage</h1>
+      <Search />
     </>
   );
 }

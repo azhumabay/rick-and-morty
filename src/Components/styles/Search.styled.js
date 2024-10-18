@@ -11,7 +11,7 @@ const SearchWrapper = styled.div`
   align-items: center;
   gap: 10px;
 
-  margin-top: 54px;
+  margin-top: 10px;
   margin-bottom: 20px;
 `;
 

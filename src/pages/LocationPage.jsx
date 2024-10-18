@@ -1,3 +1,9 @@
+import Search from "../Components/Search";
+
 export default function LocationPage() {
-  return <div>LocationPage</div>;
+  return (
+    <>
+      <Search />
+    </>
+  );
 }

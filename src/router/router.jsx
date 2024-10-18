@@ -1,10 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import AppLayout from "../Layouts/AppLayout";
-import CharactersPage from "../pages/CharactersPage";
-import LocationPage from "../pages/LocationPage";
-import EpisodesPage from "../pages/EpisodesPage";
-import SettingsPage from "../pages/SettingsPage";
 import APP_PATH from "../const/router";
+import { CharactersPage, EpisodesPage, LocationPage, SettingsPage } from "../pages";
 
 const router = createBrowserRouter([
   {

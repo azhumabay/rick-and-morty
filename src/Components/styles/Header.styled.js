@@ -13,7 +13,7 @@ const StyledHeader = styled.header`
   bottom: 0;
 
   width: 100%;
-  max-width: 420px;
+  max-width: 430px;
 `;
 
 const NavList = styled.ul`

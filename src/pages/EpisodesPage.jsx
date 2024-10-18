@@ -1,3 +1,9 @@
+import Search from "../Components/Search";
+
 export default function EpisodesPage() {
-  return <div>EpisodesPage</div>;
+  return (
+    <>
+      <Search />
+    </>
+  );
 }
