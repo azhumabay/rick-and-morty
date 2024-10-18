@@ -8,13 +8,14 @@ import {
 import { RightArrow, ThemeIcon, LeftArrow } from "../../Components/Icons";
 import SettingsModal from "./SettingsModal";
 import { useState } from "react";
+import useThemeStore from "../../store/useThemeStore";
 
 export default function SettingsPage() {
+  const { isDarkMode } = useThemeStore();
   const [modal, setModal] = useState(false);
   const navigate = useNavigate();
 
   const goBack = () => {
-    console.log("Кнопка нажата");
     navigate(-1);
   };
 
@@ -25,7 +26,7 @@ export default function SettingsPage() {
   return (
     <>
       <SettingsHeader>
-        <LeftArrow goBack={goBack} />
+        <LeftArrow onClick={goBack} />
         <h2>Настройки</h2>
       </SettingsHeader>
 
@@ -34,9 +35,9 @@ export default function SettingsPage() {
       <ThemeWrapper>
         <span>ВНЕШНИЙ ВИД</span>
         <Theme onClick={toggleModal}>
-          <ThemeIcon color="white" />
+          <ThemeIcon />
           <ThemeText>
-            Темная тема <span>Включена</span>
+            Темная тема <span>{isDarkMode ? "Включена" : "Выключена"}</span>
           </ThemeText>
           <RightArrow />
         </Theme>

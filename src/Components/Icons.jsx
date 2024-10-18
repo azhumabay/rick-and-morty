@@ -128,14 +128,14 @@ const RightArrow = ({ width = 6, height = 10 }) => (
   </StyledSvg>
 );
 
-const LeftArrow = ({ goBack }) => (
+const LeftArrow = ({ onClick }) => (
   <StyledSvg
     width="16"
     height="12"
     viewBox="0 0 16 12"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    onClick={goBack}
+    onClick={onClick}
   >
     <path
       d="M1 6H15"
@@ -158,6 +158,33 @@ const LeftArrow = ({ goBack }) => (
   </StyledSvg>
 );
 
+import React from "react";
+
+const CloseIcon = ({ onClick }) => (
+  <StyledSvg
+    width="32"
+    height="32"
+    viewBox="0 0 24 24"
+    fill="none"
+    onClick={onClick}
+  >
+    <path
+      d="M8 8L16 16"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M16 8L8 16"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </StyledSvg>
+);
+
+export default CloseIcon;
+
 export {
   CharactersIcon,
   LocationIcon,
@@ -166,4 +193,5 @@ export {
   ThemeIcon,
   RightArrow,
   LeftArrow,
+  CloseIcon,
 };

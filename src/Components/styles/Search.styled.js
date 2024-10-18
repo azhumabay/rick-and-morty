@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const SearchWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.secondary};
+const CloseSearchWrapper = styled.div`
+  background-color: ${({ theme }) => theme.colors.primary};
   width: 100%;
   height: 48px;
   padding: 12px 15px;
@@ -26,7 +26,7 @@ const SearchInput = styled.input`
   outline: none;
   width: 100%;
 
-  color: rgba(91, 105, 117, 1);
+  color: ${({ theme }) => theme.colors.text};
   font-size: 16px;
   flex-grow: 1;
 `;
@@ -42,4 +42,28 @@ const FilterLogo = styled.img`
   height: 16px;
 `;
 
-export { SearchWrapper, SearchLogo, SearchInput, Divider, FilterLogo };
+// Open
+
+const OpenSearchWrapper = styled.div`
+  background-color: ${({ theme }) => theme.colors.primary};
+  position: absolute;
+  width: 100vw;
+  height: 48px;
+  top: 10px;
+  left: 0;
+  gap: 20px;
+
+  padding: 12px 16px;
+
+  display: flex;
+  align-items: center;
+`;
+
+export {
+  CloseSearchWrapper,
+  SearchLogo,
+  SearchInput,
+  Divider,
+  FilterLogo,
+  OpenSearchWrapper,
+};

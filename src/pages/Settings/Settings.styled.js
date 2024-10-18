@@ -61,7 +61,7 @@ const SettingsModalStyled = styled.div`
 `;
 
 const SettingsModalWrapper = styled.div`
-  background-color: ${(props) => props.theme.colors.secondary};
+  background-color: ${(props) => props.theme.colors.primary};
   width: 100%;
   max-width: 430px;
   border-radius: 10px;
