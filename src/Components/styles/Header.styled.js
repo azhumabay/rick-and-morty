@@ -37,7 +37,7 @@ const NavItem = styled(NavLink)`
   gap: 5px;
 
   &.active {
-    color: rgba(67, 208, 73, 1);
+    color: ${({ theme }) => theme.colors.active};
   }
 `;
 
