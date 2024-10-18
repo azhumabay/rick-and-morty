@@ -28,11 +28,7 @@ const NavItem = styled(NavLink)`
   font-size: 12px;
   color: rgba(91, 105, 117, 1);
   text-decoration: none;
-  outline: none;
-
-  &:focus {
-    outline: none;
-  }
+  -webkit-tap-highlight-color: transparent;
 
   display: flex;
   flex-direction: column;
