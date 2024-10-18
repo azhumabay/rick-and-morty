@@ -1,27 +1,33 @@
-import { StyledHeader, NavList, NavItem, NavImg } from "./styles/Header.styled";
-import episodes from "../assets/images/episode.svg";
-import characters from "../assets/images/characters.svg";
-import location from "../assets/images/location.svg";
-import settings from "../assets/images/settings.svg";
+import { StyledHeader, NavList, NavItem } from "./styles/Header.styled";
+import APP_PATH from "../const/router";
+import {
+  CharactersIcon,
+  LocationIcon,
+  EpisodesIcon,
+  SettingsIcon,
+} from "./Icons";
 
 export default function AppHeader() {
   return (
     <StyledHeader>
       <NavList>
-        <NavItem>
-          <NavImg src={characters} />
+        <NavItem to={APP_PATH.CHARACTERS}>
+          <CharactersIcon />
           <span>Персонажи</span>
         </NavItem>
-        <NavItem>
-          <NavImg src={location} />
+
+        <NavItem to={APP_PATH.LOCATIONS}>
+          <LocationIcon />
           <span>Локации</span>
         </NavItem>
-        <NavItem>
-          <NavImg src={episodes} />
+
+        <NavItem to={APP_PATH.EPISODES}>
+          <EpisodesIcon />
           <span>Эпизоды</span>
         </NavItem>
-        <NavItem>
-          <NavImg src={settings} />
+
+        <NavItem to={APP_PATH.SETTINGS}>
+          <SettingsIcon />
           <span>Настройки</span>
         </NavItem>
       </NavList>

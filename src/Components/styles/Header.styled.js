@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 const StyledHeader = styled.header`
   height: 60px;
@@ -23,19 +24,31 @@ const NavList = styled.ul`
   height: 40px;
 `;
 
-const NavItem = styled.li`
+const NavItem = styled(NavLink)`
   font-size: 12px;
   color: rgba(91, 105, 117, 1);
+  text-decoration: none;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
+
+  &.active {
+    color: rgba(67, 208, 73, 1);
+  }
 `;
 
-const NavImg = styled.img`
+const IconSvg = styled.svg`
   width: 24px;
   height: 24px;
+  fill: #5b6975;
+  stroke: #5b6975;
+
+  .active & {
+    fill: rgba(67, 208, 73, 1);
+    stroke: rgba(67, 208, 73, 1);
+  }
 `;
 
-export { StyledHeader, NavList, NavItem, NavImg };
+export { StyledHeader, NavList, NavItem, IconSvg };

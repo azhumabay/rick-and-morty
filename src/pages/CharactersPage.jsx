@@ -1,7 +1,9 @@
+import { CharactersIcon } from "../Components/Icons";
+
 export default function CharactersPage() {
   return (
     <>
-      <h1>Hello, World</h1>
+      <h1>CharactersPage</h1>
     </>
   );
 }
