@@ -7,15 +7,10 @@ const SettingsHeader = styled.div`
   gap: 20px;
 
   h2 {
-    color: #fff;
+    color: ${(props) => props.theme.colors.text};
     font-size: 20px;
     font-weight: 500;
   }
-`;
-
-const LeftArrow = styled.img`
-  width: 14px;
-  height: 10px;
 `;
 
 const ThemeWrapper = styled.div`
@@ -38,7 +33,7 @@ const ThemeText = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3px;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 16px;
   flex-basis: calc(83%);
 
@@ -58,6 +53,7 @@ const SettingsModalStyled = styled.div`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.47);
   padding: 0 16px;
+  z-index: 1;
 
   display: flex;
   align-items: center;
@@ -65,12 +61,12 @@ const SettingsModalStyled = styled.div`
 `;
 
 const SettingsModalWrapper = styled.div`
-  background-color: rgba(21, 42, 58, 1);
+  background-color: ${(props) => props.theme.colors.secondary};
   width: 100%;
   max-width: 430px;
   border-radius: 10px;
   padding: 20px;
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -106,7 +102,6 @@ const SettingsModalClose = styled.div`
 
 export {
   SettingsHeader,
-  LeftArrow,
   ThemeWrapper,
   Theme,
   ThemeText,

@@ -1,13 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import {
-  LeftArrow,
   SettingsHeader,
   ThemeWrapper,
   Theme,
   ThemeText,
 } from "./Settings.styled";
-import leftArrow from "@assets/images/leftArrow.svg";
-import { RightArrow, ThemeIcon } from "../../Components/Icons";
+import { RightArrow, ThemeIcon, LeftArrow } from "../../Components/Icons";
 import SettingsModal from "./SettingsModal";
 import { useState } from "react";
 
@@ -16,6 +14,7 @@ export default function SettingsPage() {
   const navigate = useNavigate();
 
   const goBack = () => {
+    console.log("Кнопка нажата");
     navigate(-1);
   };
 
@@ -26,15 +25,15 @@ export default function SettingsPage() {
   return (
     <>
       <SettingsHeader>
-        <LeftArrow src={leftArrow} onClick={goBack} />
+        <LeftArrow goBack={goBack} />
         <h2>Настройки</h2>
       </SettingsHeader>
 
       {modal && <SettingsModal toggleModal={toggleModal} />}
 
-      <ThemeWrapper onClick={toggleModal}>
+      <ThemeWrapper>
         <span>ВНЕШНИЙ ВИД</span>
-        <Theme>
+        <Theme onClick={toggleModal}>
           <ThemeIcon color="white" />
           <ThemeText>
             Темная тема <span>Включена</span>

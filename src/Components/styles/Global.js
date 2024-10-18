@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background-color: rgba(11, 30, 45, 1);
+        background-color: ${(props) => props.theme.colors.background};
         font-family: "Roboto", sans-serif;
     }
 `;

@@ -3,8 +3,9 @@ import { NavLink } from "react-router-dom";
 
 const StyledHeader = styled.header`
   height: 60px;
-  background-color: rgba(21, 42, 58, 1);
+  background-color: ${(props) => props.theme.colors.secondary};
   padding: 8px 10px 12px 10px;
+  box-shadow: 0px -4px 30px 0px rgba(0, 0, 0, 0.08);
 
   margin: 0 auto;
   position: fixed;
@@ -47,8 +48,8 @@ const IconSvg = styled.svg`
   stroke: #5b6975;
 
   .active & {
-    fill: rgba(67, 208, 73, 1);
-    stroke: rgba(67, 208, 73, 1);
+    fill: ${(props) => props.theme.colors.active};
+    stroke: ${(props) => props.theme.colors.active};
   }
 `;
 

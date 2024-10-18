@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const SearchWrapper = styled.div`
-  background-color: rgba(21, 42, 58, 1);
+  background-color: ${({ theme }) => theme.colors.secondary};
   width: 100%;
   height: 48px;
   padding: 12px 15px;

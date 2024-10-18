@@ -3,7 +3,7 @@ import Search from "../Components/Search";
 export default function CharactersPage() {
   return (
     <>
-      <Search />
+      <Search placeholder="Найти персонажа" />
     </>
   );
 }

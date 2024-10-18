@@ -9,12 +9,12 @@ import {
 import search from "../assets/images/search.svg";
 import filter from "../assets/images/filter.svg";
 
-export default function Search() {
+export default function Search({ placeholder }) {
   return (
     <>
       <SearchWrapper>
         <SearchLogo src={search} />
-        <SearchInput placeholder="Найти Персонажа" />
+        <SearchInput placeholder={placeholder} />
         <Divider />
         <FilterLogo src={filter} />
       </SearchWrapper>
