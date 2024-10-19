@@ -80,7 +80,7 @@ export default function CharacterItem({ character }) {
   return (
     <CharacterItemStyled>
       <CharacterImg src={image} />
-      <CharacterText statusColor={statusColor}>
+      <CharacterText $statuscolor={statusColor}>
         <p>{statusRus}</p>
         <h2>{name}</h2>
         <span>
