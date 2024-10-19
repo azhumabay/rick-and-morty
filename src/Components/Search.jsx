@@ -10,7 +10,7 @@ import {
 import search from "../assets/images/search.svg";
 import filter from "../assets/images/filter.svg";
 import useSearchStore from "../store/useSearchStore";
-import CloseIcon, { LeftArrow } from "./Icons";
+import { CloseIcon, LeftArrow } from "./Icons";
 import { useEffect, useRef } from "react";
 
 export default function Search({ placeholder }) {

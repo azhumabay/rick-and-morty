@@ -5,6 +5,7 @@ const Container = styled.div`
   max-width: 430px;
 
   margin: 0 auto;
+  position: relative;
 
   @media screen and (max-width: 430px) {
     padding: 0 12px;

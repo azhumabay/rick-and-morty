@@ -47,7 +47,7 @@ const FilterLogo = styled.img`
 const OpenSearchWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.primary};
   position: absolute;
-  width: 100vw;
+  width: 100%;
   height: 48px;
   top: 10px;
   left: 0;
