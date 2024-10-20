@@ -4,75 +4,37 @@ import {
   CharacterText,
 } from "./Styles/CharacterItem.styled";
 
+const speciesTranslate = {
+  Human: "Человек",
+  Alien: "Инопланетянин",
+  Humanoid: "Гуманоид",
+  Poopybutthole: "ПопиБатхол",
+  "Mythological Creature": "Мифическое существо",
+  Animal: "Животное",
+  Robot: "Робот",
+  Cronenberg: "Кронберг",
+  Disease: "Болезнь",
+};
+
+const genderTranslate = {
+  Male: "Мужской",
+  Female: "Женский",
+  Genderless: "Без пола",
+  Unknown: "Неизвестно",
+};
+
+const statusTranslate = {
+  Alive: "ЖИВОЙ",
+  Dead: "МЕРТВЫЙ",
+  unknown: "Неизвестно",
+};
+
 export default function CharacterItem({ character }) {
   const { image, name, species, gender, status } = character;
 
-  let speciesRus;
-  switch (species) {
-    case "Human":
-      speciesRus = "Человек";
-      break;
-    case "Alien":
-      speciesRus = "Инопланетянин";
-      break;
-    case "Humanoid ":
-      speciesRus = "Гуманоид";
-      break;
-    case "Poopybutthole ":
-      speciesRus = "ПопиБатхол";
-      break;
-    case "Mythological Creature":
-      speciesRus = "Мифическое существо";
-      break;
-    case "Animal":
-      speciesRus = "Животное";
-      break;
-    case "Robot":
-      speciesRus = "Робот";
-      break;
-    case "Cronenberg":
-      speciesRus = "Кронберг";
-      break;
-    case "Disease":
-      speciesRus = "Болезнь";
-      break;
-    default:
-      speciesRus = "Неизвестная раса";
-  }
-
-  let genderRus;
-  switch (gender) {
-    case "Male":
-      genderRus = "Мужской";
-      break;
-    case "Female":
-      genderRus = "Женский";
-      break;
-    case "Genderless":
-      genderRus = "Без пола";
-      break;
-
-    case "Unknown":
-      genderRus = "Неизвестно";
-      break;
-    default:
-      genderRus = "Не указано";
-  }
-
-  let statusRus;
-  switch (status) {
-    case "Alive":
-      statusRus = "Живой";
-      break;
-    case "Dead":
-      statusRus = "Мертвый";
-      break;
-    case "unknown":
-      statusRus = "Неизвестно";
-      break;
-    default:
-      statusRus = "Не указано";
-  }
+  const speciesRus = speciesTranslate[species] || "Неизвестная раса";
+  const genderRus = genderTranslate[gender] || "Не указано";
+  const statusRus = statusTranslate[status] || "Не указано";
 
   return (
     <CharacterItemStyled>

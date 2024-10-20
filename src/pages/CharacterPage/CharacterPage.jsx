@@ -2,20 +2,30 @@ import { useEffect } from "react";
 import { useFetchStore } from "../../store";
 import { characterService } from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
-import { LeftArrow } from "../../Components/Icons";
+import { LeftArrow, RightArrow } from "../../Components/Icons";
 
 import {
   CharacterBack,
+  CharacterPlace,
   CharacterHeader,
   CharacterHeaderBlur,
   CharacterHeaderWrapper,
   CharacterImg,
+  CharacterInfo,
+  CharacterInfoWrapper,
   CharacterMain,
   CharacterTitle,
 } from "./Styles/CharacterPage.styled";
 
+const statusTranslate = {
+  Alive: "ЖИВОЙ",
+  Dead: "МЕРТВЫЙ",
+  unknown: "НЕИЗВЕСТНО",
+};
+
 export default function CharacterPage() {
   const { response, fetchData } = useFetchStore();
+  const { image, name, status, origin, location } = response;
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -27,15 +37,7 @@ export default function CharacterPage() {
     navigate(-1);
   };
 
-  const { image, name, status } = response;
-
-  const statusMap = {
-    Alive: "Живой",
-    Dead: "Мертвый",
-    unknown: "Неизвестно",
-  };
-
-  const statusRus = statusMap[status];
+  const statusRus = statusTranslate[status];
 
   return (
     <>
@@ -55,6 +57,36 @@ export default function CharacterPage() {
           <h1>{name}</h1>
           <span>{statusRus}</span>
         </CharacterTitle>
+
+        <CharacterInfoWrapper>
+          <CharacterInfo>
+            <div>
+              <span>Пол</span>
+              <p>Мужской</p>
+            </div>
+
+            <div>
+              <span>Расса</span>
+              <p>Человек</p>
+            </div>
+          </CharacterInfo>
+
+          <CharacterPlace>
+            <div>
+              <span>Место рождения</span>
+              <p>{origin?.name}</p>
+            </div>
+            <RightArrow />
+          </CharacterPlace>
+
+          <CharacterPlace>
+            <div>
+              <span>Местоположение</span>
+              <p>{location?.name}</p>
+            </div>
+            <RightArrow />
+          </CharacterPlace>
+        </CharacterInfoWrapper>
       </CharacterMain>
     </>
   );

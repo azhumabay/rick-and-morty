@@ -65,6 +65,7 @@ const CharacterMain = styled.div`
 
 const CharacterTitle = styled.div`
   text-align: center;
+  margin-bottom: 36px;
 
   h1 {
     font-size: 34px;
@@ -74,6 +75,45 @@ const CharacterTitle = styled.div`
 
   span {
     color: ${({ theme, $statuscolor }) => theme.character[$statuscolor]};
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+  }
+`;
+
+const CharacterInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  span {
+    display: inline-block;
+    color: ${({ theme }) => theme.colors.secondary};
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  p {
+    color: ${({ theme }) => theme.colors.text};
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+  }
+`;
+
+const CharacterInfo = styled.div`
+  display: flex;
+  gap: 118px;
+`;
+
+const CharacterPlace = styled.div`
+  display: flex;
+  align-items: center;
+
+  div {
+    flex-basis: calc(100% - 20px);
   }
 `;
 
@@ -85,4 +125,7 @@ export {
   CharacterBack,
   CharacterMain,
   CharacterTitle,
+  CharacterInfoWrapper,
+  CharacterInfo,
+  CharacterPlace,
 };
