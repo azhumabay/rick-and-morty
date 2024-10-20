@@ -10,7 +10,7 @@ const CharacterListStyled = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-bottom: 80px;
+  margin-bottom: 24px;
 `;
 
 const CharacterLink = styled(Link)`
