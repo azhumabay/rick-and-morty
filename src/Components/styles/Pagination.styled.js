@@ -9,7 +9,6 @@ const PaginationList = styled.div`
   position: relative;
   left: 0;
   margin-bottom: 100px;
-  z-index: 10;
 `;
 
 const PaginationItem = styled(NavLink)`

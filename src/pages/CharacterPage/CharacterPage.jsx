@@ -23,9 +23,36 @@ const statusTranslate = {
   unknown: "НЕИЗВЕСТНО",
 };
 
+const genderTranslate = {
+  Male: "Мужской",
+  Female: "Женский",
+  Genderless: "Без пола",
+  Unknown: "Неизвестно",
+};
+
+const speciesTranslate = {
+  Human: "Человек",
+  Alien: "Инопланетянин",
+  Humanoid: "Гуманоид",
+  Poopybutthole: "ПопиБатхол",
+  "Mythological Creature": "Мифическое существо",
+  Animal: "Животное",
+  Robot: "Робот",
+  Cronenberg: "Кронберг",
+  Disease: "Болезнь",
+};
+
+const originTranslate = {
+  unknown: "Неизвестно",
+};
+
+const locationTranslate = {
+  unknown: "Неизвестно",
+};
+
 export default function CharacterPage() {
   const { response, fetchData } = useFetchStore();
-  const { image, name, status, origin, location } = response;
+  const { image, name, status, origin, location, gender, species } = response;
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -38,6 +65,10 @@ export default function CharacterPage() {
   };
 
   const statusRus = statusTranslate[status];
+  const genderRus = genderTranslate[gender] || "Не указано";
+  const speciesRus = speciesTranslate[species];
+  const originRus = originTranslate[origin?.name] || origin?.name;
+  const locationRus = locationTranslate[location?.name] || location?.name;
 
   return (
     <>
@@ -62,19 +93,19 @@ export default function CharacterPage() {
           <CharacterInfo>
             <div>
               <span>Пол</span>
-              <p>Мужской</p>
+              <p>{genderRus}</p>
             </div>
 
             <div>
               <span>Расса</span>
-              <p>Человек</p>
+              <p>{speciesRus}</p>
             </div>
           </CharacterInfo>
 
           <CharacterPlace>
             <div>
               <span>Место рождения</span>
-              <p>{origin?.name}</p>
+              <p>{originRus}</p>
             </div>
             <RightArrow />
           </CharacterPlace>
@@ -82,7 +113,7 @@ export default function CharacterPage() {
           <CharacterPlace>
             <div>
               <span>Местоположение</span>
-              <p>{location?.name}</p>
+              <p>{locationRus}</p>
             </div>
             <RightArrow />
           </CharacterPlace>
