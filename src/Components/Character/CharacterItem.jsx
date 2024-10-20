@@ -74,13 +74,10 @@ export default function CharacterItem({ character }) {
       statusRus = "Не указано";
   }
 
-  const statusColor =
-    status === "Alive" ? "Alive" : status === "Dead" ? "Dead" : "info";
-
   return (
     <CharacterItemStyled>
       <CharacterImg src={image} />
-      <CharacterText $statuscolor={statusColor}>
+      <CharacterText $statuscolor={status}>
         <p>{statusRus}</p>
         <h2>{name}</h2>
         <span>

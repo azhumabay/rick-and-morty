@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const CharacterListStyled = styled.ul`
@@ -12,4 +13,9 @@ const CharacterListStyled = styled.ul`
   margin-bottom: 80px;
 `;
 
-export { CharacterListStyled };
+const CharacterLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
+export { CharacterListStyled, CharacterLink };

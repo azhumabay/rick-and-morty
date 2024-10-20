@@ -11,6 +11,7 @@ export const lightTheme = {
     Alive: "rgba(67, 208, 73, 1)",
     Dead: "rgba(235, 87, 87, 1)",
     info: "rgba(130, 130, 130, 1)",
+    unknown: "rgba(110, 121, 140, 1)",
   },
 };
 
@@ -27,5 +28,6 @@ export const darkTheme = {
     Alive: "rgba(67, 208, 73, 1)",
     Dead: "rgba(235, 87, 87, 1)",
     info: "rgba(110, 121, 140, 1)",
+    unknown: "rgba(110, 121, 140, 1)",
   },
 };

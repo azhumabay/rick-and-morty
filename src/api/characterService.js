@@ -4,4 +4,6 @@ const ENDPOINT = "/character";
 
 const getCharacterList = () => HTTP_CLIENT(ENDPOINT);
 
-export default { getCharacterList };
+const getCharacter = (id) => HTTP_CLIENT(`${ENDPOINT}/${id}`);
+
+export default { getCharacterList, getCharacter };

@@ -1,12 +1,18 @@
 import CharacterItem from "./CharacterItem";
-import { CharacterListStyled } from "./Styles/CharacterList.styled";
+import {
+  CharacterLink,
+  CharacterListStyled,
+} from "./Styles/CharacterList.styled";
+import APP_PATH from "../../const/router";
 
 export default function CharacterList({ list }) {
   return (
     <>
       <CharacterListStyled>
         {list.map((item) => (
-          <CharacterItem character={item} key={item.id} />
+          <CharacterLink key={item.id} to={`${APP_PATH.CHARACTERS}/${item.id}`}>
+            <CharacterItem character={item} />
+          </CharacterLink>
         ))}
       </CharacterListStyled>
     </>
