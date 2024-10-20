@@ -34,7 +34,7 @@ const SearchInput = styled.input`
 const Divider = styled.div`
   width: 1px;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: ${({ theme }) => theme.colors.divider};
 `;
 
 const FilterLogo = styled.img`

@@ -5,8 +5,9 @@ import {
   CharacterPage,
   CharacterListPage,
   EpisodesPage,
-  LocationPage,
   SettingsPage,
+  LocationListPage,
+  LocationPage,
 } from "../pages";
 
 const router = createBrowserRouter([
@@ -16,7 +17,10 @@ const router = createBrowserRouter([
       { index: true, element: <Navigate to={APP_PATH.CHARACTERS} replace /> },
       { path: APP_PATH.CHARACTERS, element: <CharacterListPage /> },
       { path: `${APP_PATH.CHARACTERS}/:id`, element: <CharacterPage /> },
-      { path: APP_PATH.LOCATIONS, element: <LocationPage /> },
+
+      { path: APP_PATH.LOCATIONS, element: <LocationListPage /> },
+      { path: `${APP_PATH.LOCATIONS}/:id`, element: <LocationPage /> },
+
       { path: APP_PATH.EPISODES, element: <EpisodesPage /> },
       { path: APP_PATH.SETTINGS, element: <SettingsPage /> },
     ],

@@ -1,6 +1,6 @@
 const APP_PATH = {
   CHARACTERS: "/character",
-  LOCATIONS: "/locations",
+  LOCATIONS: "/location",
   EPISODES: "/episodes",
   SETTINGS: "/settings",
 };

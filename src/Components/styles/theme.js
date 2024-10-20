@@ -5,6 +5,7 @@ export const lightTheme = {
     primary: "rgba(242, 242, 242, 1)",
     secondary: "rgba(189, 189, 189, 1)",
     active: "rgba(34, 162, 189, 1)",
+    divider: "rgba(189, 189, 189, 1)",
   },
 
   character: {
@@ -22,6 +23,7 @@ export const darkTheme = {
     primary: "rgba(21, 42, 58, 1)",
     secondary: "rgba(91, 105, 117, 1)",
     active: "rgba(67, 208, 73, 1)",
+    divider: "rgba(255, 255, 255, 0.1)",
   },
 
   character: {

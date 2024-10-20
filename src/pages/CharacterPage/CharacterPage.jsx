@@ -17,6 +17,8 @@ import {
   CharacterTitle,
 } from "./Styles/CharacterPage.styled";
 
+import leftArrow from "@assets/images/leftArrow.svg";
+
 const statusTranslate = {
   Alive: "ЖИВОЙ",
   Dead: "МЕРТВЫЙ",
@@ -74,7 +76,7 @@ export default function CharacterPage() {
     <>
       <CharacterHeaderWrapper>
         <CharacterBack onClick={goBack}>
-          <LeftArrow />
+          <img src={leftArrow} />
         </CharacterBack>
 
         <CharacterHeader src={image} />

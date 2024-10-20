@@ -1,0 +1,65 @@
+import { useEffect } from "react";
+import { useFetchStore } from "../../store";
+import { useNavigate, useParams } from "react-router-dom";
+import { characterService, locationService } from "../../api";
+import {
+  LocationBack,
+  LocationImg,
+  LocationMain,
+  LocationTitle,
+} from "./Styles/LocationPage.styeld";
+import locationPlaceholder from "@assets/images/locationPlaceholder.png";
+import leftArrow from "@assets/images/leftArrow.svg";
+
+const typeTranslate = {
+  Planet: "Планета",
+  "Space station": "Космическая станция",
+  Microverse: "Микроверс",
+  Cluster: "Кластер",
+  Dimension: "Измерение",
+  TV: "Телевидение",
+  Resort: "Курорт",
+  Dream: "Сон",
+  "Fantasy town": "Фэнтезийный город",
+};
+
+const dimensionTranslate = {
+  unknown: "Неизвестно",
+};
+
+export default function LocationPage() {
+  const { response: location, fetchData: locationFetch } = useFetchStore();
+  const { response: characterList, fetchData: characterListFetch } =
+    useFetchStore();
+
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    locationFetch(locationService.getLocation, id);
+  }, []);
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
+  const typeRus = typeTranslate[location.type];
+  const dimensionRus =
+    dimensionTranslate[location.dimension] || location.dimension;
+
+  return (
+    <>
+      <LocationImg src={locationPlaceholder} />
+      <LocationBack onClick={goBack} src={leftArrow} />
+      <LocationMain>
+        <LocationTitle>
+          <h2>{location.name}</h2>
+          <div>
+            {typeRus} <span>&#183; </span>
+            {dimensionRus}
+          </div>
+        </LocationTitle>
+      </LocationMain>
+    </>
+  );
+}
