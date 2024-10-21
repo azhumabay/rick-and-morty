@@ -4,10 +4,10 @@ import APP_PATH from "../const/router";
 import {
   CharacterPage,
   CharacterListPage,
-  EpisodesPage,
   SettingsPage,
   LocationListPage,
   LocationPage,
+  EpisodeListPage,
 } from "../pages";
 
 const router = createBrowserRouter([
@@ -21,11 +21,11 @@ const router = createBrowserRouter([
       { path: APP_PATH.LOCATIONS, element: <LocationListPage /> },
       { path: `${APP_PATH.LOCATIONS}/:id`, element: <LocationPage /> },
 
-      { path: APP_PATH.EPISODES, element: <EpisodesPage /> },
+      { path: APP_PATH.EPISODES, element: <EpisodeListPage /> },
       { path: APP_PATH.SETTINGS, element: <SettingsPage /> },
     ],
   },
-  // { path: "*", element: <Navigate to={APP_PATH.CHARACTERS} replace /> },
+  { path: "*", element: <Navigate to={APP_PATH.CHARACTERS} replace /> },
 ]);
 
 export default router;
