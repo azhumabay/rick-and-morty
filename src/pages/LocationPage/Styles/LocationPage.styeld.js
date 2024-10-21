@@ -56,4 +56,23 @@ const LocationTitle = styled.div`
   }
 `;
 
-export { LocationImg, LocationBack, LocationMain, LocationTitle };
+const LocationResidents = styled.div`
+  margin-top: 36px;
+  margin-bottom: 80px;
+
+  h2 {
+    color: ${({ theme }) => theme.colors.text};
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.15px;
+  }
+`;
+
+export {
+  LocationImg,
+  LocationBack,
+  LocationMain,
+  LocationTitle,
+  LocationResidents,
+};

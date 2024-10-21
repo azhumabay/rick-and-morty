@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFetchStore } from "../../store";
 import { useNavigate, useParams } from "react-router-dom";
 import { characterService, locationService } from "../../api";
@@ -6,10 +6,12 @@ import {
   LocationBack,
   LocationImg,
   LocationMain,
+  LocationResidents,
   LocationTitle,
 } from "./Styles/LocationPage.styeld";
 import locationPlaceholder from "@assets/images/locationPlaceholder.png";
 import leftArrow from "@assets/images/leftArrow.svg";
+import { CharacterList } from "../../Components";
 
 const typeTranslate = {
   Planet: "Планета",
@@ -28,24 +30,51 @@ const dimensionTranslate = {
 };
 
 export default function LocationPage() {
-  const { response: location, fetchData: locationFetch } = useFetchStore();
-  const { response: characterList, fetchData: characterListFetch } =
-    useFetchStore();
+  const { fetchData } = useFetchStore();
+
+  const [location, setLocation] = useState(null);
+  const [characterList, setCharacterList] = useState(null);
 
   const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    locationFetch(locationService.getLocation, id);
+    const fetchLocation = async () => {
+      const locationData = await fetchData(locationService.getLocation, id);
+      setLocation(locationData);
+    };
+
+    fetchLocation();
   }, []);
+
+  useEffect(() => {
+    if (location) {
+      const fetchCharacters = async () => {
+        const characterIds = location.residents.map((url) => {
+          const parts = url.split("/");
+          return parts[parts.length - 1];
+        });
+
+        const charactersData = await fetchData(
+          characterService.getCharacter,
+          characterIds.join(",")
+        );
+        setCharacterList(
+          Array.isArray(charactersData) ? charactersData : [charactersData]
+        );
+      };
+
+      fetchCharacters();
+    }
+  }, [location]);
 
   const goBack = () => {
     navigate(-1);
   };
 
-  const typeRus = typeTranslate[location.type];
+  const typeRus = typeTranslate[location?.type];
   const dimensionRus =
-    dimensionTranslate[location.dimension] || location.dimension;
+    dimensionTranslate[location?.dimension] || location?.dimension;
 
   return (
     <>
@@ -53,12 +82,19 @@ export default function LocationPage() {
       <LocationBack onClick={goBack} src={leftArrow} />
       <LocationMain>
         <LocationTitle>
-          <h2>{location.name}</h2>
+          <h2>{location?.name}</h2>
           <div>
             {typeRus} <span>&#183; </span>
             {dimensionRus}
           </div>
         </LocationTitle>
+
+        {characterList && characterList.length > 0 && (
+          <LocationResidents>
+            <h2>Персонажи</h2>
+            <CharacterList list={characterList} />
+          </LocationResidents>
+        )}
       </LocationMain>
     </>
   );

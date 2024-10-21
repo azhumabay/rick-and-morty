@@ -10,6 +10,7 @@ const useFetchStore = create((set) => ({
     try {
       const result = await fetchAPI(params);
       set({ response: result });
+      return result;
     } catch (error) {
       set({ error: error.message });
     } finally {

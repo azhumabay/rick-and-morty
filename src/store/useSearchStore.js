@@ -5,6 +5,7 @@ const useSearchStore = create((set) => ({
 
   openSearch: () => set({ isSearchOpen: true }),
   closeSearch: () => set({ isSearchOpen: false }),
+  
 }));
 
 export default useSearchStore;
