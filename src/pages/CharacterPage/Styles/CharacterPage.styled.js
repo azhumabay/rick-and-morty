@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const CharacterHeaderWrapper = styled.div`
@@ -108,7 +109,8 @@ const CharacterInfo = styled.div`
   gap: 118px;
 `;
 
-const CharacterPlace = styled.div`
+const CharacterPlace = styled(Link)`
+  text-decoration: none;
   display: flex;
   align-items: center;
 

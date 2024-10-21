@@ -50,10 +50,9 @@ export default function LocationPage() {
   useEffect(() => {
     if (location) {
       const fetchCharacters = async () => {
-        const characterIds = location.residents.map((url) => {
-          const parts = url.split("/");
-          return parts[parts.length - 1];
-        });
+        const characterIds = location.residents.map((url) =>
+          url.split("/").pop()
+        );
 
         const charactersData = await fetchData(
           characterService.getCharacter,

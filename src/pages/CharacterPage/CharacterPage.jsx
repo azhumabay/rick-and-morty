@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useFetchStore } from "../../store";
 import { characterService } from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
-import { LeftArrow, RightArrow } from "../../Components/Icons";
+import { RightArrow } from "../../Components/Icons";
+import APP_PATH from "../../const/router";
 
 import {
   CharacterBack,
@@ -72,6 +73,9 @@ export default function CharacterPage() {
   const originRus = originTranslate[origin?.name] || origin?.name;
   const locationRus = locationTranslate[location?.name] || location?.name;
 
+  const originId = origin?.url.split("/").pop();
+  const locationId = location?.url.split("/").pop();
+
   return (
     <>
       <CharacterHeaderWrapper>
@@ -104,7 +108,7 @@ export default function CharacterPage() {
             </div>
           </CharacterInfo>
 
-          <CharacterPlace>
+          <CharacterPlace to={`${APP_PATH.LOCATIONS}/${originId}`}>
             <div>
               <span>Место рождения</span>
               <p>{originRus}</p>
@@ -112,7 +116,7 @@ export default function CharacterPage() {
             <RightArrow />
           </CharacterPlace>
 
-          <CharacterPlace>
+          <CharacterPlace to={`${APP_PATH.LOCATIONS}/${locationId}`}>
             <div>
               <span>Местоположение</span>
               <p>{locationRus}</p>
