@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { characterService } from "../../api";
-import { CharacterInfo } from "./Styles/CharacterListPage.styled";
-import { CharacterList, Pagination, Search } from "../../Components";
-import { useFetchStore, useSearchStore, useThemeStore } from "../../store";
+import { characterService } from "../../../api";
+import { CharacterInfo } from "./CharacterListPage.styled";
+import { CharacterList, Pagination, Search } from "../../../Components";
+import { useFetchStore, useSearchStore, useThemeStore } from "../../../store";
 import { useSearchParams } from "react-router-dom";
-import APP_PATH from "../../const/router";
+import APP_PATH from "../../../const/router";
 
 import gridSwitch from "@assets/images/gridSwitch.svg";
 import tableSwitch from "@assets/images/tableSwitch.svg";

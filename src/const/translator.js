@@ -73,7 +73,7 @@ const statusTranslate = {
 };
 
 const dimensionTranslate = {
-  unknown: "неизвестно",
+  unknown: "Неизвестно",
 };
 
 const originTranslate = {

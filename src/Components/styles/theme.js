@@ -14,6 +14,11 @@ export const lightTheme = {
     info: "rgba(130, 130, 130, 1)",
     unknown: "rgba(110, 121, 140, 1)",
   },
+
+  episode: {
+    episode: "rgba(34, 162, 189, 0.87)",
+    air_date: "rgba(130, 130, 130, 1)",
+  },
 };
 
 export const darkTheme = {
@@ -31,5 +36,10 @@ export const darkTheme = {
     Dead: "rgba(235, 87, 87, 1)",
     info: "rgba(110, 121, 140, 1)",
     unknown: "rgba(110, 121, 140, 1)",
+  },
+
+  episode: {
+    episode: "rgba(34, 162, 189, 0.87)",
+    air_date: "rgba(110, 121, 140, 0.6)",
   },
 };

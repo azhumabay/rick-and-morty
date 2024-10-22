@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useFetchStore } from "../../store";
-import { characterService } from "../../api";
+import { useFetchStore } from "../../../store";
+import { characterService } from "../../../api";
 import { useNavigate, useParams } from "react-router-dom";
-import { RightArrow } from "../../Components/Icons";
-import APP_PATH from "../../const/router";
+import { RightArrow } from "../../../Components/Icons";
+import APP_PATH from "../../../const/router";
 
 import {
   CharacterBack,
@@ -16,7 +16,7 @@ import {
   CharacterInfoWrapper,
   CharacterMain,
   CharacterTitle,
-} from "./Styles/CharacterPage.styled";
+} from "./CharacterPage.styled";
 
 import leftArrow from "@assets/images/leftArrow.svg";
 import {
@@ -25,7 +25,7 @@ import {
   originTranslate,
   speciesTranslate,
   statusTranslate,
-} from "../../const/translator";
+} from "../../../const/translator";
 
 export default function CharacterPage() {
   const { response, fetchData } = useFetchStore();

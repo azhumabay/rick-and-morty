@@ -8,6 +8,7 @@ import {
   LocationListPage,
   LocationPage,
   EpisodeListPage,
+  EpisodePage,
 } from "../pages";
 
 const router = createBrowserRouter([
@@ -22,6 +23,8 @@ const router = createBrowserRouter([
       { path: `${APP_PATH.LOCATIONS}/:id`, element: <LocationPage /> },
 
       { path: APP_PATH.EPISODES, element: <EpisodeListPage /> },
+      { path: `${APP_PATH.EPISODES}/:id`, element: <EpisodePage /> },
+
       { path: APP_PATH.SETTINGS, element: <SettingsPage /> },
     ],
   },

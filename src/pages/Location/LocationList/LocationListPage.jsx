@@ -1,12 +1,11 @@
-import { useEffect } from "react";
-import { Pagination, Search } from "../../Components";
-import LocationList from "../../Components/Location/LocationList";
-import useFetchStore from "../../store/useFetchStore";
-import { locationService } from "../../api";
-import { useSearchStore } from "../../store";
-import { LocationInfo } from "./Styles/LocationListPage.styled";
 import { useSearchParams } from "react-router-dom";
-import APP_PATH from "../../const/router";
+import { useFetchStore, useSearchStore } from "../../../store";
+import { useEffect } from "react";
+import { locationService } from "../../../api";
+import { LocationList, Pagination, Search } from "../../../Components";
+
+import APP_PATH from "../../../const/router";
+import { LocationInfo } from "./LocationListPage.styled";
 
 export default function LocationPage() {
   const { response, fetchData } = useFetchStore();
