@@ -47,8 +47,49 @@ const typeTranslate = {
   Nightmare: "Кошмар",
 };
 
+const speciesTranslate = {
+  Human: "Человек",
+  Alien: "Инопланетянин",
+  Humanoid: "Гуманоид",
+  Poopybutthole: "ПопиБатхол",
+  "Mythological Creature": "Мифическое существо",
+  Animal: "Животное",
+  Robot: "Робот",
+  Cronenberg: "Кронберг",
+  Disease: "Болезнь",
+};
+
+const genderTranslate = {
+  Male: "Мужской",
+  Female: "Женский",
+  Genderless: "Без пола",
+  Unknown: "Неизвестно",
+};
+
+const statusTranslate = {
+  Alive: "ЖИВОЙ",
+  Dead: "МЕРТВЫЙ",
+  unknown: "Неизвестно",
+};
+
 const dimensionTranslate = {
   unknown: "неизвестно",
 };
 
-export { typeTranslate, dimensionTranslate };
+const originTranslate = {
+  unknown: "Неизвестно",
+};
+
+const locationTranslate = {
+  unknown: "Неизвестно",
+};
+
+export {
+  typeTranslate,
+  dimensionTranslate,
+  speciesTranslate,
+  genderTranslate,
+  statusTranslate,
+  originTranslate,
+  locationTranslate,
+};

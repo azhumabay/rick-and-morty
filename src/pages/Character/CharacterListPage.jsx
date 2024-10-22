@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { characterService } from "../../api";
 import { CharacterInfo } from "./Styles/CharacterListPage.styled";
 import { CharacterList, Pagination, Search } from "../../Components";
@@ -41,7 +41,7 @@ export default function CharactersPage() {
           <CharacterList list={characterList} gridView={isGridView} />
           <Pagination
             path={APP_PATH.CHARACTERS}
-            pages={42}
+            pages={info.pages}
             currentPage={currentPage}
           />
         </>

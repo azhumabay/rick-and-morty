@@ -1,3 +1,4 @@
+import { genderTranslate, speciesTranslate, statusTranslate } from "../../const/translator";
 import {
   CharacterGridImg,
   CharacterGridStyled,
@@ -8,31 +9,6 @@ import {
   CharacterItemTable,
   CharacterTableText,
 } from "./Styles/CharacterTableItem.styled";
-
-const speciesTranslate = {
-  Human: "Человек",
-  Alien: "Инопланетянин",
-  Humanoid: "Гуманоид",
-  Poopybutthole: "ПопиБатхол",
-  "Mythological Creature": "Мифическое существо",
-  Animal: "Животное",
-  Robot: "Робот",
-  Cronenberg: "Кронберг",
-  Disease: "Болезнь",
-};
-
-const genderTranslate = {
-  Male: "Мужской",
-  Female: "Женский",
-  Genderless: "Без пола",
-  Unknown: "Неизвестно",
-};
-
-const statusTranslate = {
-  Alive: "ЖИВОЙ",
-  Dead: "МЕРТВЫЙ",
-  unknown: "Неизвестно",
-};
 
 export default function CharacterItem({ character, gridView }) {
   const { image, name, species, gender, status } = character;

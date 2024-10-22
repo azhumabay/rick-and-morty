@@ -19,39 +19,13 @@ import {
 } from "./Styles/CharacterPage.styled";
 
 import leftArrow from "@assets/images/leftArrow.svg";
-
-const statusTranslate = {
-  Alive: "ЖИВОЙ",
-  Dead: "МЕРТВЫЙ",
-  unknown: "НЕИЗВЕСТНО",
-};
-
-const genderTranslate = {
-  Male: "Мужской",
-  Female: "Женский",
-  Genderless: "Без пола",
-  Unknown: "Неизвестно",
-};
-
-const speciesTranslate = {
-  Human: "Человек",
-  Alien: "Инопланетянин",
-  Humanoid: "Гуманоид",
-  Poopybutthole: "ПопиБатхол",
-  "Mythological Creature": "Мифическое существо",
-  Animal: "Животное",
-  Robot: "Робот",
-  Cronenberg: "Кронберг",
-  Disease: "Болезнь",
-};
-
-const originTranslate = {
-  unknown: "Неизвестно",
-};
-
-const locationTranslate = {
-  unknown: "Неизвестно",
-};
+import {
+  genderTranslate,
+  locationTranslate,
+  originTranslate,
+  speciesTranslate,
+  statusTranslate,
+} from "../../const/translator";
 
 export default function CharacterPage() {
   const { response, fetchData } = useFetchStore();
