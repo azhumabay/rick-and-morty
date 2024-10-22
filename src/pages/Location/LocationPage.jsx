@@ -48,7 +48,7 @@ export default function LocationPage() {
   }, []);
 
   useEffect(() => {
-    if (location) {
+    if (location && location.residents.length > 0) {
       const fetchCharacters = async () => {
         const characterIds = location.residents.map((url) =>
           url.split("/").pop()

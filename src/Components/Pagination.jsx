@@ -5,42 +5,24 @@ import {
   PaginationList,
 } from "./styles/Pagination.styled";
 
-export default function Pagination({ pages, currentPage }) {
+export default function Pagination({ path, pages, currentPage }) {
   const getPageNumbers = () => {
     const pageNumbers = [];
     const currentPageNumber = Number(currentPage);
 
-    if (currentPageNumber <= 2) {
-      pageNumbers.push(1, 2, 3);
-      if (pages > 3) {
-        pageNumbers.push("...");
+    pageNumbers.push(currentPageNumber);
+    if (currentPageNumber - 1) {
+      if (currentPageNumber - 2) {
+        pageNumbers.unshift("...");
+        pageNumbers.unshift(1);
+        pageNumbers.unshift("<");
       }
-      if (pages > 3) {
-        pageNumbers.push(pages);
-      }
-    } else if (currentPageNumber === pages) {
-      pageNumbers.push(1);
+    }
+
+    if (currentPageNumber + 1 <= pages) {
       pageNumbers.push("...");
-      if (pages > 3) {
-        pageNumbers.push(pages - 2, pages - 1);
-      }
       pageNumbers.push(pages);
-    } else {
-      pageNumbers.push(1);
-      if (currentPageNumber > 3) {
-        pageNumbers.push("...");
-      }
-      if (currentPageNumber > 1) {
-        pageNumbers.push(currentPageNumber - 1);
-      }
-      pageNumbers.push(currentPageNumber);
-      if (currentPageNumber < pages) {
-        pageNumbers.push(currentPageNumber + 1);
-      }
-      if (currentPageNumber < pages - 2) {
-        pageNumbers.push("...");
-      }
-      pageNumbers.push(pages);
+      pageNumbers.push(">");
     }
 
     return pageNumbers;
@@ -48,19 +30,41 @@ export default function Pagination({ pages, currentPage }) {
 
   return (
     <PaginationList>
-      {getPageNumbers().map((page, index) =>
-        page === "..." ? (
-          <Ellipsis key={index}>...</Ellipsis>
-        ) : (
-          <PaginationItem
-            key={index}
-            to={`${APP_PATH.CHARACTERS}/?page=${page}`}
-            $active={page === Number(currentPage)}
-          >
-            {page}
-          </PaginationItem>
-        )
-      )}
+      {getPageNumbers().map((page, index) => {
+        if (page === "...") {
+          return <Ellipsis key={index}>...</Ellipsis>;
+        } else if (page === "<") {
+          return (
+            <PaginationItem
+              key={index}
+              to={`${path}/?page=${Number(currentPage) - 1}`}
+              $active={page === Number(currentPage)}
+            >
+              {page}
+            </PaginationItem>
+          );
+        } else if (page === ">") {
+          return (
+            <PaginationItem
+              key={index}
+              to={`${path}/?page=${Number(currentPage) + 1}`}
+              $active={page === Number(currentPage)}
+            >
+              {page}
+            </PaginationItem>
+          );
+        } else {
+          return (
+            <PaginationItem
+              key={index}
+              to={`${path}/?page=${page}`}
+              $active={page === Number(currentPage)}
+            >
+              {page}
+            </PaginationItem>
+          );
+        }
+      })}
     </PaginationList>
   );
 }

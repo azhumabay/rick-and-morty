@@ -5,6 +5,7 @@ import { ToggleViewIcon } from "../../Components/Icons";
 import { CharacterList, Pagination, Search } from "../../Components";
 import { useFetchStore, useSearchStore } from "../../store";
 import { useSearchParams } from "react-router-dom";
+import APP_PATH from "../../const/router";
 
 export default function CharactersPage() {
   const { response, fetchData } = useFetchStore();
@@ -31,7 +32,11 @@ export default function CharactersPage() {
           </CharacterInfo>
 
           <CharacterList list={characterList} />
-          <Pagination pages={42} currentPage={currentPage} />
+          <Pagination
+            path={APP_PATH.CHARACTERS}
+            pages={42}
+            currentPage={currentPage}
+          />
         </>
       )}
     </>
