@@ -8,10 +8,11 @@ import APP_PATH from "../../../const/router";
 
 import gridSwitch from "@assets/images/gridSwitch.svg";
 import tableSwitch from "@assets/images/tableSwitch.svg";
+import CharacterFilter from "../../../Components/Character/CharacterFilter";
 
 export default function CharactersPage() {
   const { response, fetchData } = useFetchStore();
-  const { isSearchOpen } = useSearchStore();
+  const { isSearchOpen, isFilterOpen } = useSearchStore();
   const { isGridView, toggleGridView } = useThemeStore();
 
   const [searchParams] = useSearchParams();
@@ -26,9 +27,13 @@ export default function CharactersPage() {
 
   return (
     <>
-      <Search placeholder="Найти персонажа" />
+      {isFilterOpen ? (
+        <CharacterFilter />
+      ) : (
+        <Search placeholder="Найти персонажа" isFilter={true} />
+      )}
 
-      {!isSearchOpen && (
+      {!isFilterOpen && !isSearchOpen && (
         <>
           <CharacterInfo>
             <span>ВСЕГО ПЕРСОНАЖЕЙ: {info.count}</span>

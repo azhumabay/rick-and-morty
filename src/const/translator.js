@@ -62,7 +62,7 @@ const speciesTranslate = {
 const genderTranslate = {
   Male: "Мужской",
   Female: "Женский",
-  Genderless: "Без пола",
+  Genderless: "Бесполый",
   Unknown: "Неизвестно",
 };
 

@@ -5,6 +5,7 @@ import { useFetchStore, useSearchStore } from "../../../store";
 import { useSearchParams } from "react-router-dom";
 import { episodeService } from "../../../api";
 import APP_PATH from "../../../const/router";
+import { EpisodeListPageInfo } from "./EpisodeListPage.styled";
 
 export default function EpisodeListPage() {
   const { response, fetchData } = useFetchStore();
@@ -26,6 +27,9 @@ export default function EpisodeListPage() {
 
       {!isSearchOpen && (
         <>
+          <EpisodeListPageInfo>
+            Всего Эпизодов: {info?.count}
+          </EpisodeListPageInfo>
           <EpisodeList list={episodeList} />
 
           <Pagination

@@ -23,7 +23,7 @@ export default function LocationPage() {
 
   return (
     <>
-      <Search placeholder="Найти локацию" />
+      <Search placeholder="Найти локацию" isFilter={true} />
 
       {!isSearchOpen && (
         <>

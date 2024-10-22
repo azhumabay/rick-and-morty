@@ -49,7 +49,7 @@ const OpenSearchWrapper = styled.div`
   position: absolute;
   width: 100%;
   height: 48px;
-  top: 10px;
+  top: 0px;
   left: 0;
   gap: 20px;
 

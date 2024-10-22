@@ -78,7 +78,7 @@ const EpisodePageInfo = styled.div`
 `;
 
 const EpisodeDivider = styled.div`
-  border: 2px solid rgba(21, 42, 58, 1);
+  border: 2px solid ${({ theme }) => theme.colors.primary};
 `;
 
 const EpisodeCharacters = styled.div`

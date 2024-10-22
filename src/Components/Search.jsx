@@ -13,8 +13,9 @@ import useSearchStore from "../store/useSearchStore";
 import { CloseIcon, LeftArrow } from "./Icons";
 import { useEffect, useRef } from "react";
 
-export default function Search({ placeholder }) {
-  const { isSearchOpen, openSearch, closeSearch } = useSearchStore();
+export default function Search({ placeholder, isFilter = false }) {
+  const { isSearchOpen, openSearch, closeSearch, openFilter } =
+    useSearchStore();
 
   const searchInputRef = useRef(null);
 
@@ -36,8 +37,12 @@ export default function Search({ placeholder }) {
         <CloseSearchWrapper>
           <SearchLogo src={search} />
           <SearchInput placeholder={placeholder} onClick={openSearch} />
-          <Divider />
-          <FilterLogo src={filter} />
+          {isFilter && (
+            <>
+              <Divider />
+              <FilterLogo src={filter} onClick={openFilter} />
+            </>
+          )}
         </CloseSearchWrapper>
       )}
     </>
