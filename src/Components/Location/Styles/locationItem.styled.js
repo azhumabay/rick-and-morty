@@ -32,6 +32,7 @@ const LocationInfo = styled.div`
     color: ${({ theme }) => theme.character.unknown};
     display: flex;
     align-items: center;
+    font-size: 12px;
     gap: 5px;
   }
 

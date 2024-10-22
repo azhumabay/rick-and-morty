@@ -12,22 +12,7 @@ import {
 import locationPlaceholder from "@assets/images/locationPlaceholder.png";
 import leftArrow from "@assets/images/leftArrow.svg";
 import { CharacterList } from "../../Components";
-
-const typeTranslate = {
-  Planet: "Планета",
-  "Space station": "Космическая станция",
-  Microverse: "Микроверс",
-  Cluster: "Кластер",
-  Dimension: "Измерение",
-  TV: "Телевидение",
-  Resort: "Курорт",
-  Dream: "Сон",
-  "Fantasy town": "Фэнтезийный город",
-};
-
-const dimensionTranslate = {
-  unknown: "Неизвестно",
-};
+import { dimensionTranslate, typeTranslate } from "../../const/translator";
 
 export default function LocationPage() {
   const { fetchData } = useFetchStore();

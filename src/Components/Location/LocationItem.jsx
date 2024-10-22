@@ -1,26 +1,11 @@
 import APP_PATH from "../../const/router";
+import { dimensionTranslate, typeTranslate } from "../../const/translator";
 import {
   LocationImg,
   LocationInfo,
   LocationItemStyled,
 } from "./Styles/locationItem.styled";
 import locationPlaceholder from "@assets/images/locationPlaceholder.png";
-
-const typeTranslate = {
-  Planet: "Планета",
-  "Space station": "Космическая станция",
-  Microverse: "Микроверс",
-  Cluster: "Кластер",
-  Dimension: "Измерение",
-  TV: "Телевидение",
-  Resort: "Курорт",
-  Dream: "Сон",
-  "Fantasy town": "Фэнтезийный город",
-};
-
-const dimensionTranslate = {
-  unknown: "Неизвестно",
-};
 
 export default function LocationItem({ id, name, type, dimension }) {
   const typeRus = typeTranslate[type];
