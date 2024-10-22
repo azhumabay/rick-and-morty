@@ -17,8 +17,6 @@ export default function EpisodeListPage() {
     fetchData(episodeService.getEpisodeList, currentPage);
   }, [currentPage]);
 
-  console.log(response);
-
   const episodeList = response.results || [];
   const info = response.info;
 
