@@ -6,13 +6,10 @@ const PaginationList = styled.div`
   justify-content: center;
   gap: 5px;
 
-  position: relative;
-  left: 0;
   margin-bottom: 100px;
 `;
 
 const PaginationItem = styled(NavLink)`
-  display: inline-block;
   background: ${({ theme, $active }) =>
     $active ? theme.colors.secondary : theme.colors.primary};
   color: ${({ theme }) => theme.colors.text};
@@ -22,7 +19,6 @@ const PaginationItem = styled(NavLink)`
 `;
 
 const Ellipsis = styled.div`
-  display: inline-block;
   color: ${({ theme }) => theme.colors.text};
   padding: 5px 10px;
   border-radius: 5px;
