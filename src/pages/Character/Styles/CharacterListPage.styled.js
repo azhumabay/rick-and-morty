@@ -5,6 +5,7 @@ const CharacterInfo = styled.div`
   font-weight: 500;
   font-size: 10px;
   letter-spacing: 1.5px;
+  margin-bottom: 24px;
 
   display: flex;
   justify-content: space-between;

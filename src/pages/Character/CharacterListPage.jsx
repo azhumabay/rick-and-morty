@@ -1,15 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { characterService } from "../../api";
 import { CharacterInfo } from "./Styles/CharacterListPage.styled";
-import { ToggleViewIcon } from "../../Components/Icons";
 import { CharacterList, Pagination, Search } from "../../Components";
-import { useFetchStore, useSearchStore } from "../../store";
+import { useFetchStore, useSearchStore, useThemeStore } from "../../store";
 import { useSearchParams } from "react-router-dom";
 import APP_PATH from "../../const/router";
+
+import gridSwitch from "@assets/images/gridSwitch.svg";
+import tableSwitch from "@assets/images/tableSwitch.svg";
 
 export default function CharactersPage() {
   const { response, fetchData } = useFetchStore();
   const { isSearchOpen } = useSearchStore();
+  const { isGridView, toggleGridView } = useThemeStore();
 
   const [searchParams] = useSearchParams();
   const currentPage = searchParams.get("page") || 1;
@@ -28,10 +31,14 @@ export default function CharactersPage() {
       {!isSearchOpen && (
         <>
           <CharacterInfo>
-            <span>ВСЕГО ПЕРСОНАЖЕЙ: {info.count}</span> <ToggleViewIcon />
+            <span>ВСЕГО ПЕРСОНАЖЕЙ: {info.count}</span>
+            <img
+              src={isGridView ? tableSwitch : gridSwitch}
+              onClick={toggleGridView}
+            />
           </CharacterInfo>
 
-          <CharacterList list={characterList} />
+          <CharacterList list={characterList} gridView={isGridView} />
           <Pagination
             path={APP_PATH.CHARACTERS}
             pages={42}

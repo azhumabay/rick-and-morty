@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
-const CharacterItemStyled = styled.li`
+const CharacterItemTable = styled.li`
   display: flex;
   align-items: center;
   gap: 24px;
 `;
 
-const CharacterImg = styled.img`
+const CharacterTableImg = styled.img`
   width: 74px;
   height: 74px;
   border-radius: 100px;
 `;
 
-const CharacterText = styled.div`
+const CharacterTableText = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -40,4 +40,4 @@ const CharacterText = styled.div`
   }
 `;
 
-export { CharacterItemStyled, CharacterImg, CharacterText };
+export { CharacterItemTable, CharacterTableImg, CharacterTableText };

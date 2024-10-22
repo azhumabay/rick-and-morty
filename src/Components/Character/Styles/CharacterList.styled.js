@@ -7,8 +7,10 @@ const CharacterListStyled = styled.ul`
   color: ${({ theme }) => theme.colors.text};
   padding: 0;
 
-  display: flex;
-  flex-direction: column;
+  display: ${({ $isGridView }) => ($isGridView ? "grid" : "flex")};
+  flex-direction: ${({ $isGridView }) => ($isGridView ? "initial" : "column")};
+  grid-template-columns: ${({ $isGridView }) =>
+    $isGridView ? "1fr 1fr" : "none"};
   gap: 24px;
   margin-bottom: 24px;
 `;
