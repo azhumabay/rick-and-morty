@@ -3,9 +3,7 @@ import { useFetchStore, useSearchStore } from "../../../store";
 import { useEffect } from "react";
 import { locationService } from "../../../api";
 import { LocationList, Pagination, Search } from "../../../Components";
-
-import APP_PATH from "../../../const/router";
-import { LocationInfo } from "./LocationListPage.styled";
+import { LocationInfo, LocationListContent } from "./LocationListPage.styled";
 
 export default function LocationPage() {
   const { response, fetchData } = useFetchStore();
@@ -28,13 +26,11 @@ export default function LocationPage() {
       {!isSearchOpen && (
         <>
           <LocationInfo>ВСЕГО ЛОКАЦИЙ: {info.count}</LocationInfo>
-          <LocationList locationList={locationList} />
 
-          <Pagination
-            path={APP_PATH.LOCATIONS}
-            pages={info.pages}
-            currentPage={currentPage}
-          />
+          <LocationListContent>
+            <LocationList locationList={locationList} />
+            <Pagination pages={info.pages} currentPage={currentPage} />
+          </LocationListContent>
         </>
       )}
     </>

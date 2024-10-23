@@ -13,4 +13,11 @@ const EpisodeListPageInfo = styled.div`
   margin-bottom: 24px;
 `;
 
-export { EpisodeListPageInfo };
+const EpisodeListContent = styled.div`
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+`;
+
+export { EpisodeListPageInfo, EpisodeListContent };

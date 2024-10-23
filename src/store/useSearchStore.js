@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 const useSearchStore = create((set) => ({
   isSearchOpen: false,
-  isFilterOpen: true,
+  isFilterOpen: false,
   gender: "",
   status: "",
 

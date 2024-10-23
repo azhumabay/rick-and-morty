@@ -12,4 +12,11 @@ const CharacterInfo = styled.div`
   align-items: center;
 `;
 
-export { CharacterInfo };
+const CharacterListContent = styled.div`
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+`;
+
+export { CharacterInfo, CharacterListContent };

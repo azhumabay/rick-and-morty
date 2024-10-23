@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { characterService } from "../../../api";
-import { CharacterInfo } from "./CharacterListPage.styled";
+import {
+  CharacterInfo,
+  CharacterListContent,
+} from "./CharacterListPage.styled";
 import { CharacterList, Pagination, Search } from "../../../Components";
 import { useFetchStore, useSearchStore, useThemeStore } from "../../../store";
 import { useSearchParams } from "react-router-dom";
-import APP_PATH from "../../../const/router";
 
 import gridSwitch from "@assets/images/gridSwitch.svg";
 import tableSwitch from "@assets/images/tableSwitch.svg";
@@ -63,12 +65,10 @@ export default function CharactersPage() {
             />
           </CharacterInfo>
 
-          <CharacterList list={characterList} gridView={isGridView} />
-          <Pagination
-            path={APP_PATH.CHARACTERS}
-            pages={info.pages}
-            currentPage={currentPage}
-          />
+          <CharacterListContent>
+            <CharacterList list={characterList} gridView={isGridView} />
+            <Pagination pages={info.pages} currentPage={currentPage} />
+          </CharacterListContent>
         </>
       )}
     </>

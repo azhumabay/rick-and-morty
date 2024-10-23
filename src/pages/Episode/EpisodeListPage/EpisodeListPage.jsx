@@ -4,8 +4,10 @@ import Search from "../../../Components/Search";
 import { useFetchStore, useSearchStore } from "../../../store";
 import { useSearchParams } from "react-router-dom";
 import { episodeService } from "../../../api";
-import APP_PATH from "../../../const/router";
-import { EpisodeListPageInfo } from "./EpisodeListPage.styled";
+import {
+  EpisodeListContent,
+  EpisodeListPageInfo,
+} from "./EpisodeListPage.styled";
 
 export default function EpisodeListPage() {
   const { response, fetchData } = useFetchStore();
@@ -30,13 +32,11 @@ export default function EpisodeListPage() {
           <EpisodeListPageInfo>
             Всего Эпизодов: {info?.count}
           </EpisodeListPageInfo>
-          <EpisodeList list={episodeList} />
 
-          <Pagination
-            path={APP_PATH.EPISODES}
-            pages={info?.pages}
-            currentPage={currentPage}
-          />
+          <EpisodeListContent>
+            <EpisodeList list={episodeList} />
+            <Pagination pages={info?.pages} currentPage={currentPage} />
+          </EpisodeListContent>
         </>
       )}
     </>

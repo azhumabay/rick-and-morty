@@ -12,4 +12,11 @@ const LocationInfo = styled.div`
   margin-bottom: 24px;
 `;
 
-export { LocationInfo };
+const LocationListContent = styled.div`
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+`;
+
+export { LocationInfo, LocationListContent };

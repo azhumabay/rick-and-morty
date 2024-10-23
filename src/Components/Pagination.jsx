@@ -1,10 +1,13 @@
+import { useLocation } from "react-router-dom";
 import {
   Ellipsis,
   PaginationItem,
   PaginationList,
 } from "./styles/Pagination.styled";
 
-export default function Pagination({ path, pages, currentPage }) {
+export default function Pagination({ pages, currentPage }) {
+  const location = useLocation();
+
   const getPageNumbers = () => {
     const pageNumbers = [];
     const currentPageNumber = Number(currentPage);
@@ -41,7 +44,7 @@ export default function Pagination({ path, pages, currentPage }) {
         ) : (
           <PaginationItem
             key={index}
-            to={`${path}?page=${page}`}
+            to={`${location.pathname}?page=${page}`}
             $active={page === Number(currentPage)}
           >
             {page}
