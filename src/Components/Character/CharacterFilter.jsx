@@ -8,22 +8,49 @@ import {
 
 import { LeftArrow } from "../Icons";
 import { useSearchStore } from "../../store";
+import resetFilter from "@assets/images/resetFilter.svg";
 
-const Checkbox = ({ id, label, onChange, name }) => (
+const Checkbox = ({ id, label, onChange, name, checked }) => (
   <div>
-    <input type="radio" name={name} id={id} onChange={onChange} />
+    <input
+      type="radio"
+      name={name}
+      id={id}
+      onChange={onChange}
+      checked={checked}
+    />
     <label htmlFor={id}>{label}</label>
   </div>
 );
 
-export default function CharacterFilter() {
-  const { closeFilter } = useSearchStore();
+export default function CharacterFilter({ setCurrentPage }) {
+  const { closeFilter, setGender, setStatus, status, gender } =
+    useSearchStore();
+
+  const genderHandler = (event) => {
+    setGender(event.target.id);
+  };
+
+  const statusHandler = (event) => {
+    setStatus(event.target.id);
+  };
+
+  const resetHandler = () => {
+    setStatus("");
+    setGender("");
+    setCurrentPage(1);
+  };
 
   return (
     <>
       <CharacterFilterHeader>
-        <LeftArrow onClick={closeFilter} />
-        <h1>Фильтры</h1>
+        <div>
+          <LeftArrow onClick={closeFilter} />
+          <h1>Фильтры</h1>
+        </div>
+        {(status || gender) && (
+          <img src={resetFilter} alt="очистить фильтр" onClick={resetHandler} />
+        )}
       </CharacterFilterHeader>
       <CharacterFilterStyled>
         <span>Сортировать</span>
@@ -32,9 +59,27 @@ export default function CharacterFilter() {
           <CharacterFilterItem>
             <span>Статус</span>
 
-            <Checkbox id="status=alive" label="Живой" name={"status"} />
-            <Checkbox id="status=dead" label="Мертвый" name={"status"} />
-            <Checkbox id="status=unknown" label="Неизвестно" name={"status"} />
+            <Checkbox
+              id="alive"
+              label="Живой"
+              name={"status"}
+              onChange={statusHandler}
+              checked={status === "alive"}
+            />
+            <Checkbox
+              id="dead"
+              label="Мертвый"
+              name={"status"}
+              onChange={statusHandler}
+              checked={status === "dead"}
+            />
+            <Checkbox
+              id="unknown"
+              label="Неизвестно"
+              name={"status"}
+              onChange={statusHandler}
+              checked={status === "unknown"}
+            />
           </CharacterFilterItem>
 
           <CharacterFilterDivider />
@@ -42,9 +87,27 @@ export default function CharacterFilter() {
           <CharacterFilterItem>
             <span>Пол</span>
 
-            <Checkbox id="gender-male" label="Мужской" name={"gender"} />
-            <Checkbox id="gender-female" label="Женский" name={"gender"} />
-            <Checkbox id="gender-genderless" label="Бесполый" name={"gender"} />
+            <Checkbox
+              id="male"
+              label="Мужской"
+              name={"gender"}
+              onChange={genderHandler}
+              checked={gender === "male"}
+            />
+            <Checkbox
+              id="female"
+              label="Женский"
+              name={"gender"}
+              onChange={genderHandler}
+              checked={gender === "female"}
+            />
+            <Checkbox
+              id="genderless"
+              label="Бесполый"
+              name={"gender"}
+              onChange={genderHandler}
+              checked={gender === "genderless"}
+            />
           </CharacterFilterItem>
         </CharacterFilterContent>
       </CharacterFilterStyled>

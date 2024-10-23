@@ -11,7 +11,13 @@ const CharacterFilterHeader = styled.div`
 
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
 
   h1 {
     color: ${({ theme }) => theme.colors.text};

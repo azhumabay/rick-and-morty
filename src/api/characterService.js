@@ -6,4 +6,6 @@ const getCharacterList = (page) => HTTP_CLIENT(`${ENDPOINT}/?page=${page}`);
 
 const getCharacter = (id) => HTTP_CLIENT(`${ENDPOINT}/${id}`);
 
-export default { getCharacterList, getCharacter };
+const getFilteredCharacterList = (params) => HTTP_CLIENT(ENDPOINT + params);
+
+export default { getCharacterList, getCharacter, getFilteredCharacterList };

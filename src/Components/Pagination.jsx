@@ -1,4 +1,3 @@
-import APP_PATH from "../const/router";
 import {
   Ellipsis,
   PaginationItem,
@@ -42,7 +41,7 @@ export default function Pagination({ path, pages, currentPage }) {
         ) : (
           <PaginationItem
             key={index}
-            to={`${path}/?page=${page}`}
+            to={`${path}?page=${page}`}
             $active={page === Number(currentPage)}
           >
             {page}
