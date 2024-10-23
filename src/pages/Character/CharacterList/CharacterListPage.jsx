@@ -28,12 +28,10 @@ export default function CharactersPage() {
 
     if (status !== "") {
       fetchParams.push(`status=${status}`);
-      setCurrentPage(1);
     }
 
     if (gender !== "") {
       fetchParams.push(`gender=${gender}`);
-      setCurrentPage(1);
     }
 
     const query =

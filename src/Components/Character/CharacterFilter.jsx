@@ -29,10 +29,12 @@ export default function CharacterFilter({ setCurrentPage }) {
 
   const genderHandler = (event) => {
     setGender(event.target.id);
+    setCurrentPage(1);
   };
 
   const statusHandler = (event) => {
     setStatus(event.target.id);
+    setCurrentPage(1);
   };
 
   const resetHandler = () => {
