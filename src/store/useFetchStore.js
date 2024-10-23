@@ -12,11 +12,14 @@ const useFetchStore = create((set) => ({
       set({ response: result });
       return result;
     } catch (error) {
+      set({ response: [] });
       set({ error: error.message });
     } finally {
       set({ loading: false });
     }
   },
+
+  resetResponse: () => set({ response: [] }),
 }));
 
 export default useFetchStore;

@@ -4,7 +4,12 @@ import {
   CharacterInfo,
   CharacterListContent,
 } from "./CharacterListPage.styled";
-import { CharacterList, Pagination, Search } from "../../../Components";
+import {
+  CharacterList,
+  CharacterSearch,
+  Pagination,
+  Search,
+} from "../../../Components";
 import { useFetchStore, useSearchStore, useThemeStore } from "../../../store";
 import { useSearchParams } from "react-router-dom";
 
@@ -17,6 +22,7 @@ export default function CharactersPage() {
   const { isSearchOpen, isFilterOpen, status, gender } = useSearchStore();
   const { isGridView, toggleGridView } = useThemeStore();
   const [currentPage, setCurrentPage] = useState(1);
+  const [name, setName] = useState("");
 
   const [searchParams] = useSearchParams();
 
@@ -36,13 +42,21 @@ export default function CharactersPage() {
       fetchParams.push(`gender=${gender}`);
     }
 
-    const query =
-      fetchParams.length > 0
-        ? `?page=${currentPage}&${fetchParams.join("&")}`
-        : `?page=${currentPage}`;
+    let query;
 
-    fetchData(characterService.getFilteredCharacterList, query);
-  }, [currentPage, status, gender]);
+    if (!isSearchOpen) {
+      query =
+        fetchParams.length > 0
+          ? `?page=${currentPage}&${fetchParams.join("&")}`
+          : `?page=${currentPage}`;
+    } else {
+      query = `?name=${name}`;
+    }
+
+    if (!isSearchOpen) {
+      fetchData(characterService.getFilteredCharacterList, query);
+    }
+  }, [currentPage, status, gender, name, isSearchOpen]);
 
   const characterList = response.results || [];
   const info = response.info || {};
@@ -52,7 +66,14 @@ export default function CharactersPage() {
       {isFilterOpen ? (
         <CharacterFilter setCurrentPage={setCurrentPage} />
       ) : (
-        <Search placeholder="Найти персонажа" isFilter={true} />
+        <>
+          <Search
+            placeholder="Найти персонажа"
+            isFilter={true}
+            setName={setName}
+            name={name}
+          />
+        </>
       )}
 
       {!isFilterOpen && !isSearchOpen && (
@@ -71,6 +92,8 @@ export default function CharactersPage() {
           </CharacterListContent>
         </>
       )}
+
+      {isSearchOpen && <CharacterSearch name={name} />}
     </>
   );
 }

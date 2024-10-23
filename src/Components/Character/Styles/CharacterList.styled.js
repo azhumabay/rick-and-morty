@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const CharacterListStyled = styled.ul`
-  margin-top: 20px;
+  padding-top: 20px;
   list-style: none;
   color: ${({ theme }) => theme.colors.text};
   padding: 0;
