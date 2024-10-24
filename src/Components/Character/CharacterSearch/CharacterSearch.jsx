@@ -9,21 +9,15 @@ import {
 } from "./CharacterSearch.styled";
 import characterNotFound from "@assets/images/characterNotFound.svg";
 import Pagination from "../../Pagination";
+import { useSearchParams } from "react-router-dom";
 
 export default function CharacterSearch({ name, currentPage, setCurrentPage }) {
   const { response, fetchData, resetResponse, error } = useFetchStore();
   const { isGridView } = useThemeStore();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     resetResponse();
-    setCurrentPage(1);
-
-    return () => {
-      setCurrentPage(1);
-    };
-  }, []);
-
-  useEffect(() => {
     let query;
 
     if (name.length > 0) {
@@ -35,7 +29,6 @@ export default function CharacterSearch({ name, currentPage, setCurrentPage }) {
     }
 
     if (query) {
-      console.log("CharacterSearch");
       fetchData(characterService.getFilteredCharacterList, query);
     }
   }, [currentPage, name]);

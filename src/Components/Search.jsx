@@ -12,6 +12,7 @@ import filter from "../assets/images/filter.svg";
 import useSearchStore from "../store/useSearchStore";
 import { CloseIcon, LeftArrow } from "./Icons";
 import { useEffect, useRef } from "react";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 export default function Search({
   placeholder,
@@ -19,6 +20,9 @@ export default function Search({
   setName,
   name,
 }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const location = useLocation();
   const { isSearchOpen, openSearch, closeSearch, openFilter } =
     useSearchStore();
 
@@ -33,6 +37,12 @@ export default function Search({
   const closeSearchHandler = () => {
     closeSearch();
     setName("");
+    navigate(location.pathname);
+  };
+
+  const openSearchHanlder = () => {
+    openSearch();
+    setSearchParams({});
   };
 
   return (
@@ -53,7 +63,7 @@ export default function Search({
       ) : (
         <CloseSearchWrapper>
           <SearchLogo src={search} />
-          <SearchInput placeholder={placeholder} onClick={openSearch} />
+          <SearchInput placeholder={placeholder} onClick={openSearchHanlder} />
           {isFilter && (
             <>
               <Divider />

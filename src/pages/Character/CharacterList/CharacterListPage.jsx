@@ -10,7 +10,12 @@ import {
   Pagination,
   Search,
 } from "../../../Components";
-import { useFetchStore, useSearchStore, useThemeStore } from "../../../store";
+import {
+  useCharacterStore,
+  useFetchStore,
+  useSearchStore,
+  useThemeStore,
+} from "../../../store";
 import { useSearchParams } from "react-router-dom";
 
 import gridSwitch from "@assets/images/gridSwitch.svg";
@@ -18,11 +23,11 @@ import tableSwitch from "@assets/images/tableSwitch.svg";
 import CharacterFilter from "../../../Components/Character/CharacterFilter";
 
 export default function CharactersPage() {
-  const { response, fetchData } = useFetchStore();
+  const { response, fetchData, resetResponse } = useFetchStore();
+  const { searchName, setSearchName } = useCharacterStore();
   const { isSearchOpen, isFilterOpen, status, gender } = useSearchStore();
   const { isGridView, toggleGridView } = useThemeStore();
   const [currentPage, setCurrentPage] = useState(1);
-  const [name, setName] = useState("");
 
   const [searchParams] = useSearchParams();
 
@@ -52,10 +57,9 @@ export default function CharactersPage() {
     }
 
     if (!isSearchOpen) {
-      console.log("CharacterList");
       fetchData(characterService.getFilteredCharacterList, query);
     }
-  }, [currentPage, status, gender, name, isSearchOpen]);
+  }, [currentPage, status, gender, searchName, isSearchOpen]);
 
   const characterList = response.results || [];
   const info = response.info || {};
@@ -69,8 +73,8 @@ export default function CharactersPage() {
           <Search
             placeholder="Найти персонажа"
             isFilter={true}
-            setName={setName}
-            name={name}
+            setName={setSearchName}
+            name={searchName}
           />
         </>
       )}
@@ -96,7 +100,7 @@ export default function CharactersPage() {
         <CharacterSearch
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
-          name={name}
+          name={searchName}
         />
       )}
     </>
