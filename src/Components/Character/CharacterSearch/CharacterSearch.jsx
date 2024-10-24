@@ -4,10 +4,12 @@ import { useFetchStore, useThemeStore } from "../../../store";
 import CharacterList from "../CharacterList";
 import {
   CharacterNotFound,
+  CharacterSearchContent,
   CharacterSearchStyled,
 } from "./CharacterSearch.styled";
 import { useSearchParams } from "react-router-dom";
 import characterNotFound from "@assets/images/characterNotFound.svg";
+import Pagination from "../../Pagination";
 
 export default function CharacterSearch({ name }) {
   const { response, fetchData, resetResponse, error } = useFetchStore();
@@ -28,7 +30,11 @@ export default function CharacterSearch({ name }) {
     let query;
 
     if (name.length > 0) {
-      query = `?name=${name}`;
+      {
+        currentPage == 1
+          ? (query = `?name=${name}`)
+          : (query = `?page=${currentPage}&name=${name}`);
+      }
     }
 
     if (query) {
@@ -37,18 +43,27 @@ export default function CharacterSearch({ name }) {
   }, [currentPage, name]);
 
   const characterList = response.results || [];
+  const pages = response?.info?.pages;
 
   return (
     <>
       <CharacterSearchStyled>
         <span>Результаты поиска</span>
 
-        <CharacterList list={characterList} gridView={isGridView} />
         {error && (
           <CharacterNotFound>
             <img src={characterNotFound} />
             <p>Персонаж с таким именем не найден</p>
           </CharacterNotFound>
+        )}
+
+        {response && !error && (
+          <>
+            <CharacterSearchContent>
+              <CharacterList list={characterList} gridView={isGridView} />
+              <Pagination pages={pages} currentPage={currentPage} />
+            </CharacterSearchContent>
+          </>
         )}
       </CharacterSearchStyled>
     </>

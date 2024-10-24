@@ -37,4 +37,11 @@ const CharacterNotFound = styled.div`
   }
 `;
 
-export { CharacterSearchStyled, CharacterNotFound };
+const CharacterSearchContent = styled.div`
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export { CharacterSearchStyled, CharacterNotFound, CharacterSearchContent };
