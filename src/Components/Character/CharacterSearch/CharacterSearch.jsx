@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { characterService } from "../../../api";
 import { useFetchStore, useThemeStore } from "../../../store";
 import CharacterList from "../CharacterList";
@@ -7,23 +7,20 @@ import {
   CharacterSearchContent,
   CharacterSearchStyled,
 } from "./CharacterSearch.styled";
-import { useSearchParams } from "react-router-dom";
 import characterNotFound from "@assets/images/characterNotFound.svg";
 import Pagination from "../../Pagination";
 
-export default function CharacterSearch({ name }) {
+export default function CharacterSearch({ name, currentPage, setCurrentPage }) {
   const { response, fetchData, resetResponse, error } = useFetchStore();
   const { isGridView } = useThemeStore();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchParams] = useSearchParams();
-
-  useEffect(() => {
-    const page = searchParams.get("page") || 1;
-    setCurrentPage(page);
-  }, [searchParams]);
 
   useEffect(() => {
     resetResponse();
+    setCurrentPage(1);
+
+    return () => {
+      setCurrentPage(1);
+    };
   }, []);
 
   useEffect(() => {
@@ -38,6 +35,7 @@ export default function CharacterSearch({ name }) {
     }
 
     if (query) {
+      console.log("CharacterSearch");
       fetchData(characterService.getFilteredCharacterList, query);
     }
   }, [currentPage, name]);

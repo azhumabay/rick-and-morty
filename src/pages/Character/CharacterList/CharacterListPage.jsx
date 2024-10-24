@@ -49,11 +49,10 @@ export default function CharactersPage() {
         fetchParams.length > 0
           ? `?page=${currentPage}&${fetchParams.join("&")}`
           : `?page=${currentPage}`;
-    } else {
-      query = `?name=${name}`;
     }
 
     if (!isSearchOpen) {
+      console.log("CharacterList");
       fetchData(characterService.getFilteredCharacterList, query);
     }
   }, [currentPage, status, gender, name, isSearchOpen]);
@@ -93,7 +92,13 @@ export default function CharactersPage() {
         </>
       )}
 
-      {isSearchOpen && <CharacterSearch name={name} />}
+      {isSearchOpen && (
+        <CharacterSearch
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          name={name}
+        />
+      )}
     </>
   );
 }
