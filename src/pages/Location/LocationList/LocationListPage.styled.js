@@ -13,7 +13,7 @@ const LocationInfo = styled.div`
 `;
 
 const LocationListContent = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 120px);
   display: flex;
   justify-content: space-between;
   flex-direction: column;
