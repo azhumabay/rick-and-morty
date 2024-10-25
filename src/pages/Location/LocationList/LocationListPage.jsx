@@ -22,6 +22,7 @@ export default function LocationPage() {
   const {
     locationFilter,
     openFilter,
+    closeFilter,
     type,
     locationName,
     setLocationName,
@@ -37,7 +38,17 @@ export default function LocationPage() {
 
   useEffect(() => {
     if (type !== null) {
-      fetchData(locationService.getLocationList, `${currentPage}&type=${type}`);
+      if (locationName.length > 0) {
+        fetchData(
+          locationService.getLocationList,
+          `${currentPage}&type=${type}&name=${locationName}`
+        );
+      } else {
+        fetchData(
+          locationService.getLocationList,
+          `${currentPage}&type=${type}`
+        );
+      }
     } else {
       if (locationName.length > 0) {
         fetchData(
