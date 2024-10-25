@@ -20,6 +20,7 @@ export default function Search({
   setName,
   name,
   openFilter,
+  setCurrentPage,
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -56,6 +57,8 @@ export default function Search({
             value={name}
             onChange={(e) => {
               setName(e.target.value);
+              setCurrentPage(1);
+              setSearchParams({});
             }}
           />
           <CloseIcon onClick={closeSearchHandler} />

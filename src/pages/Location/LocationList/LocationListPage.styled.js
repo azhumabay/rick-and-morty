@@ -13,10 +13,31 @@ const LocationInfo = styled.div`
 `;
 
 const LocationListContent = styled.div`
-  min-height: calc(100vh - 120px);
+  min-height: ${({ $isSearchOpen }) =>
+    $isSearchOpen ? "calc(100vh - 40px)" : "calc(100vh - 120px)"};
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  padding-top: ${({ $isSearchOpen }) => ($isSearchOpen ? "40px" : "0")};
 `;
 
-export { LocationInfo, LocationListContent };
+const LocationNotFound = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
+
+  p {
+    display: inline-block;
+    width: 216px;
+
+    color: ${({ theme }) => theme.colors.secondary};
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    text-align: center;
+  }
+`;
+
+export { LocationInfo, LocationListContent, LocationNotFound };
