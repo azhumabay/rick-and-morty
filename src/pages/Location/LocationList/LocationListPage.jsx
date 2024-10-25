@@ -22,7 +22,6 @@ export default function LocationPage() {
   const {
     locationFilter,
     openFilter,
-    closeFilter,
     type,
     locationName,
     setLocationName,
@@ -93,7 +92,7 @@ export default function LocationPage() {
       {error && (
         <LocationNotFound>
           <img src={locationNotFound} />
-          <p>Персонаж с таким именем не найден</p>
+          <p>Локации с таким названием не найдено</p>
         </LocationNotFound>
       )}
     </>

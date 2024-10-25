@@ -11,13 +11,38 @@ const EpisodeListPageInfo = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  padding-top: ${({ $isSearchOpen }) => ($isSearchOpen ? "70px" : "0px")};
 `;
 
 const EpisodeListContent = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 120px);
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 `;
 
-export { EpisodeListPageInfo, EpisodeListContent };
+const EpisodeNotFound = styled.div`
+  height: calc(100vh - 250px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 44px;
+
+  img {
+    width: 161px;
+    height: 212px;
+  }
+
+  p {
+    display: inline-block;
+    width: 216px;
+
+    color: ${({ theme }) => theme.colors.secondary};
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    text-align: center;
+  }
+`;
+
+export { EpisodeListPageInfo, EpisodeListContent, EpisodeNotFound };

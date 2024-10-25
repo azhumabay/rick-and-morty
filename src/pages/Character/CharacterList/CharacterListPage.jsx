@@ -23,9 +23,15 @@ import tableSwitch from "@assets/images/tableSwitch.svg";
 import CharacterFilter from "../../../Components/Character/CharacterFilter";
 
 export default function CharactersPage() {
-  const { response, fetchData, resetResponse } = useFetchStore();
-  const { searchName, setSearchName } = useCharacterStore();
-  const { isSearchOpen, isFilterOpen, status, gender } = useSearchStore();
+  const { response, fetchData } = useFetchStore();
+  const {
+    searchName,
+    setSearchName,
+    openCharacterFilter,
+    isCharacterFilterOpen,
+  } = useCharacterStore();
+  const { isSearchOpen } = useSearchStore();
+  const { status, gender } = useCharacterStore();
   const { isGridView, toggleGridView } = useThemeStore();
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -66,7 +72,7 @@ export default function CharactersPage() {
 
   return (
     <>
-      {isFilterOpen ? (
+      {isCharacterFilterOpen ? (
         <CharacterFilter setCurrentPage={setCurrentPage} />
       ) : (
         <>
@@ -75,11 +81,13 @@ export default function CharactersPage() {
             isFilter={true}
             setName={setSearchName}
             name={searchName}
+            openFilter={openCharacterFilter}
+            setCurrentPage={setCurrentPage}
           />
         </>
       )}
 
-      {!isFilterOpen && !isSearchOpen && (
+      {!isCharacterFilterOpen && !isSearchOpen && (
         <>
           <CharacterInfo>
             <span>ВСЕГО ПЕРСОНАЖЕЙ: {info.count}</span>
@@ -96,13 +104,7 @@ export default function CharactersPage() {
         </>
       )}
 
-      {isSearchOpen && (
-        <CharacterSearch
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          name={searchName}
-        />
-      )}
+      {isSearchOpen && <CharacterSearch />}
     </>
   );
 }

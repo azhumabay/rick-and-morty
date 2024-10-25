@@ -1,6 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { characterService } from "../../../api";
-import { useFetchStore, useThemeStore } from "../../../store";
+import {
+  useCharacterStore,
+  useFetchStore,
+  useThemeStore,
+} from "../../../store";
 import CharacterList from "../CharacterList";
 import {
   CharacterNotFound,
@@ -11,27 +15,26 @@ import characterNotFound from "@assets/images/characterNotFound.svg";
 import Pagination from "../../Pagination";
 import { useSearchParams } from "react-router-dom";
 
-export default function CharacterSearch({ name, currentPage, setCurrentPage }) {
-  const { response, fetchData, resetResponse, error } = useFetchStore();
+export default function CharacterSearch() {
+  const { response, fetchData, error } = useFetchStore();
+  const { gender, status, searchName } = useCharacterStore();
+  const [currentPage, setCurrentPage] = useState(1);
   const { isGridView } = useThemeStore();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    resetResponse();
-    let query;
+    setCurrentPage(searchParams.get("page") || 1);
+  }, [searchParams, setCurrentPage]);
 
-    if (name.length > 0) {
-      {
-        currentPage == 1
-          ? (query = `?name=${name}`)
-          : (query = `?page=${currentPage}&name=${name}`);
-      }
-    }
+  useEffect(() => {
+    let query = `${currentPage}`;
 
-    if (query) {
-      fetchData(characterService.getFilteredCharacterList, query);
-    }
-  }, [currentPage, name]);
+    query += gender.length > 0 ? `&gender=${gender}` : "";
+    query += status.length > 0 ? `&status=${status}` : "";
+    query += searchName.length > 0 ? `&name=${searchName}` : "";
+
+    fetchData(characterService.getCharacterList, query);
+  }, [currentPage, searchName, status, gender]);
 
   const characterList = response.results || [];
   const pages = response?.info?.pages;

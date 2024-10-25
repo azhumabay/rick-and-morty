@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+const CharacterPageStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+`;
+
 const CharacterHeaderWrapper = styled.div`
   position: absolute;
   top: 0;
@@ -119,6 +125,34 @@ const CharacterPlace = styled(Link)`
   }
 `;
 
+const CharacterDivider = styled.div`
+  border: 2px solid ${({ theme }) => theme.colors.primary};
+`;
+
+const CharacterEpisodes = styled.div`
+  padding: 0 16px;
+`;
+
+const CharacterEpisodesInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    color: ${({ theme }) => theme.colors.text};
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.15px;
+  }
+
+  span {
+    color: ${({ theme }) => theme.colors.secondary};
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+`;
+
 export {
   CharacterHeaderWrapper,
   CharacterHeaderBlur,
@@ -130,4 +164,8 @@ export {
   CharacterInfoWrapper,
   CharacterInfo,
   CharacterPlace,
+  CharacterDivider,
+  CharacterPageStyled,
+  CharacterEpisodes,
+  CharacterEpisodesInfo,
 };

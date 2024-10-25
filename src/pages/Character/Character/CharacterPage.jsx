@@ -16,6 +16,10 @@ import {
   CharacterInfoWrapper,
   CharacterMain,
   CharacterTitle,
+  CharacterDivider,
+  CharacterPageStyled,
+  CharacterEpisodes,
+  CharacterEpisodesInfo,
 } from "./CharacterPage.styled";
 
 import leftArrow from "@assets/images/leftArrow.svg";
@@ -51,7 +55,7 @@ export default function CharacterPage() {
   const locationId = location?.url.split("/").pop();
 
   return (
-    <>
+    <CharacterPageStyled>
       <CharacterHeaderWrapper>
         <CharacterBack onClick={goBack}>
           <img src={leftArrow} />
@@ -99,6 +103,15 @@ export default function CharacterPage() {
           </CharacterPlace>
         </CharacterInfoWrapper>
       </CharacterMain>
-    </>
+
+      <CharacterDivider />
+
+      <CharacterEpisodes>
+        <CharacterEpisodesInfo>
+          <h2>Эпизоды</h2>
+          <span>Все эпизоды</span>
+        </CharacterEpisodesInfo>
+      </CharacterEpisodes>
+    </CharacterPageStyled>
   );
 }

@@ -21,7 +21,6 @@ export default function Search({
   name,
   openFilter,
   setCurrentPage,
-  closeFilter,
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();

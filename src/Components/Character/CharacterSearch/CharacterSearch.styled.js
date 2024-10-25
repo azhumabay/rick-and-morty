@@ -16,9 +16,12 @@ const CharacterSearchStyled = styled.div`
 `;
 
 const CharacterNotFound = styled.div`
+  height: calc(65vh);
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 28px;
 
   img {

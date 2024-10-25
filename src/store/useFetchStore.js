@@ -18,8 +18,6 @@ const useFetchStore = create((set) => ({
       set({ loading: false });
     }
   },
-
-  resetResponse: () => set({ response: [] }),
 }));
 
 export default useFetchStore;

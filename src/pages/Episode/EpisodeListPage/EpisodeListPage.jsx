@@ -1,43 +1,59 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { EpisodeList, Pagination } from "../../../Components";
 import Search from "../../../Components/Search";
-import { useFetchStore, useSearchStore } from "../../../store";
+import { useEpisodeStore, useFetchStore, useSearchStore } from "../../../store";
 import { useSearchParams } from "react-router-dom";
 import { episodeService } from "../../../api";
 import {
   EpisodeListContent,
   EpisodeListPageInfo,
+  EpisodeNotFound,
 } from "./EpisodeListPage.styled";
+import episodeNotFound from "@assets/images/episodeNotFound.svg";
 
 export default function EpisodeListPage() {
-  const { response, fetchData } = useFetchStore();
+  const { response, fetchData, error } = useFetchStore();
   const { isSearchOpen } = useSearchStore();
+  const { searchName, setSearchName } = useEpisodeStore();
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [searchParams] = useSearchParams();
-  const currentPage = searchParams.get("page") || 1;
 
   useEffect(() => {
-    fetchData(episodeService.getEpisodeList, currentPage);
-  }, [currentPage]);
+    setCurrentPage(searchParams.get("page") || 1);
+  }, [searchParams, setCurrentPage]);
+
+  useEffect(() => {
+    let queryName = "";
+    queryName += searchName.length > 0 ? `&name=${searchName}` : "";
+    fetchData(episodeService.getEpisodeList, currentPage + queryName);
+  }, [currentPage, searchName]);
 
   const episodeList = response.results || [];
   const info = response.info;
 
   return (
     <>
-      <Search placeholder={"Найти эпизод"} />
+      <Search
+        placeholder={"Найти эпизод"}
+        name={searchName}
+        setName={setSearchName}
+      />
 
-      {!isSearchOpen && (
-        <>
-          <EpisodeListPageInfo>
-            Всего Эпизодов: {info?.count}
-          </EpisodeListPageInfo>
+      <EpisodeListPageInfo $isSearchOpen={isSearchOpen}>
+        {isSearchOpen ? "Результаты поиска" : `Всего Эпизодов: ${info?.count}`}
+      </EpisodeListPageInfo>
 
-          <EpisodeListContent>
-            <EpisodeList list={episodeList} />
-            <Pagination pages={info?.pages} currentPage={currentPage} />
-          </EpisodeListContent>
-        </>
+      {!error ? (
+        <EpisodeListContent>
+          <EpisodeList list={episodeList} />
+          <Pagination pages={info?.pages} currentPage={currentPage} />
+        </EpisodeListContent>
+      ) : (
+        <EpisodeNotFound>
+          <img src={episodeNotFound} />
+          <p>Эпизода с таким названием нет</p>
+        </EpisodeNotFound>
       )}
     </>
   );
