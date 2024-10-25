@@ -104,14 +104,14 @@ export default function CharacterPage() {
         </CharacterInfoWrapper>
       </CharacterMain>
 
-      <CharacterDivider />
+      {/* <CharacterDivider />
 
       <CharacterEpisodes>
         <CharacterEpisodesInfo>
           <h2>Эпизоды</h2>
           <span>Все эпизоды</span>
         </CharacterEpisodesInfo>
-      </CharacterEpisodes>
+      </CharacterEpisodes> */}
     </CharacterPageStyled>
   );
 }

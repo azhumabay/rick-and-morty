@@ -13,7 +13,7 @@ const CharacterInfo = styled.div`
 `;
 
 const CharacterListContent = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 130px);
   display: flex;
   justify-content: space-between;
   flex-direction: column;
