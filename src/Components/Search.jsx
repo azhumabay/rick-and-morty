@@ -19,12 +19,12 @@ export default function Search({
   isFilter = false,
   setName,
   name,
+  openFilter,
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { isSearchOpen, openSearch, closeSearch, openFilter } =
-    useSearchStore();
+  const { isSearchOpen, openSearch, closeSearch } = useSearchStore();
 
   const searchInputRef = useRef(null);
 

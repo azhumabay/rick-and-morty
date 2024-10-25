@@ -2,28 +2,47 @@ import { useSearchParams } from "react-router-dom";
 import { useFetchStore, useSearchStore } from "../../../store";
 import { useEffect } from "react";
 import { locationService } from "../../../api";
-import { LocationList, Pagination, Search } from "../../../Components";
+import {
+  LocationFilter,
+  LocationList,
+  Pagination,
+  Search,
+} from "../../../Components";
 import { LocationInfo, LocationListContent } from "./LocationListPage.styled";
+import useLocationStore from "../../../store/useLocationStore";
 
 export default function LocationPage() {
   const { response, fetchData } = useFetchStore();
   const { isSearchOpen } = useSearchStore();
+  const { locationFilter, openFilter, type } = useLocationStore();
 
   const [searchParams] = useSearchParams();
   const currentPage = searchParams.get("page") || 1;
 
   useEffect(() => {
-    fetchData(locationService.getLocationList, currentPage);
-  }, [currentPage]);
+    if (type !== null) {
+      fetchData(locationService.getLocationList, `${currentPage}&type=${type}`);
+    } else {
+      fetchData(locationService.getLocationList, currentPage);
+    }
+  }, [currentPage, type]);
 
   const locationList = response.results || [];
   const info = response.info || {};
 
   return (
     <>
-      <Search placeholder="Найти локацию" isFilter={true} />
+      {locationFilter ? (
+        <LocationFilter />
+      ) : (
+        <Search
+          placeholder="Найти локацию"
+          isFilter={true}
+          openFilter={openFilter}
+        />
+      )}
 
-      {!isSearchOpen && (
+      {!isSearchOpen && !locationFilter && (
         <>
           <LocationInfo>ВСЕГО ЛОКАЦИЙ: {info.count}</LocationInfo>
 
