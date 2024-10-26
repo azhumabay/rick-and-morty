@@ -19,7 +19,7 @@ const slideDown = keyframes`
 `;
 
 const SplashScreenStyled = styled.div`
-  height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +27,6 @@ const SplashScreenStyled = styled.div`
 `;
 
 const SplashScreenTitle = styled.img`
-  margin-top: 42px;
   object-fit: contain;
   width: calc(45vh);
   height: calc(45vh);
@@ -36,7 +35,7 @@ const SplashScreenTitle = styled.img`
 const SplashScreenMorty = styled.img`
   width: calc(40vh);
   height: calc(25vh);
-  flex-grow: 1;
+
   object-fit: cover;
   object-position: bottom;
   animation: ${slideDown} 2s ease forwards;
@@ -48,9 +47,17 @@ const SplashScreenRick = styled.img`
   animation: ${slideUp} 2s ease forwards;
 `;
 
+const SplashScreenImgWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+`;
+
 export {
   SplashScreenStyled,
   SplashScreenTitle,
   SplashScreenMorty,
   SplashScreenRick,
+  SplashScreenImgWrapper,
 };
