@@ -46,6 +46,11 @@ export default function Search({
     setSearchParams({});
   };
 
+  const openFilterHandler = () => {
+    openFilter();
+    setSearchParams({});
+  };
+
   return (
     <>
       {isSearchOpen ? (
@@ -70,7 +75,7 @@ export default function Search({
           {isFilter && (
             <>
               <Divider />
-              <FilterLogo src={filter} onClick={openFilter} />
+              <FilterLogo src={filter} onClick={openFilterHandler} />
             </>
           )}
         </CloseSearchWrapper>
