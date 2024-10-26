@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { EpisodeList, Pagination } from "../../../Components";
-import Search from "../../../Components/Search";
-import { useEpisodeStore, useFetchStore, useSearchStore } from "../../../store";
+import { EpisodeList, Pagination, Search } from "../../components";
+import { useEpisodeStore, useFetchStore, useSearchStore } from "../../store";
 import { useSearchParams } from "react-router-dom";
-import { episodeService } from "../../../api";
+import { episodeService } from "../../api";
 import {
   EpisodeListContent,
   EpisodeListPageInfo,
   EpisodeNotFound,
-} from "./EpisodeListPage.styled";
+} from "./styled/EpisodeListPage.styled";
 import episodeNotFound from "@assets/images/episodeNotFound.svg";
 
 export default function EpisodeListPage() {
@@ -38,6 +37,7 @@ export default function EpisodeListPage() {
         placeholder={"Найти эпизод"}
         name={searchName}
         setName={setSearchName}
+        setCurrentPage={setCurrentPage}
       />
 
       <EpisodeListPageInfo $isSearchOpen={isSearchOpen}>

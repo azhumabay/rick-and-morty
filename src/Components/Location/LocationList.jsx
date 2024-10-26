@@ -1,5 +1,5 @@
 import LocationItem from "./LocationItem";
-import { LocationListStyled } from "./Styles/locationList.styled";
+import { LocationListStyled } from "./styled/locationList.styled";
 
 export default function LocationList({ locationList }) {
   return (

@@ -1,5 +1,16 @@
 import styled from "styled-components";
-import { IconSvg } from "./styles/Header.styled";
+
+const IconSvg = styled.svg`
+  width: 24px;
+  height: 24px;
+  fill: ${({ theme }) => theme.colors.secondary};
+  stroke: ${({ theme }) => theme.colors.secondary};
+
+  .active & {
+    fill: ${(props) => props.theme.colors.active};
+    stroke: ${(props) => props.theme.colors.active};
+  }
+`;
 
 const StyledSvg = styled.svg`
   stroke: ${(props) => props.theme.colors.text};

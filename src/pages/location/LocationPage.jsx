@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { useFetchStore } from "../../../store";
+import { useFetchStore } from "../../store";
 import { useNavigate, useParams } from "react-router-dom";
-import { characterService, locationService } from "../../../api";
-import { dimensionTranslate, typeTranslate } from "../../../const/translator";
+import { characterService, locationService } from "../../api";
+import { dimensionTranslate, typeTranslate } from "../../const/translator";
 import {
   LocationBack,
   LocationImg,
   LocationMain,
   LocationResidents,
   LocationTitle,
-} from "./LocationPage.styeld";
-import { CharacterList } from "../../../Components";
+} from "./styled/LocationPage.styled";
+import { CharacterList } from "../../components";
 
 import locationPlaceholder from "@assets/images/locationPlaceholder.png";
 import leftArrow from "@assets/images/leftArrow.svg";

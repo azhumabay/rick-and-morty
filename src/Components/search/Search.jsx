@@ -1,3 +1,4 @@
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import {
   SearchLogo,
   CloseSearchWrapper,
@@ -5,14 +6,15 @@ import {
   Divider,
   FilterLogo,
   OpenSearchWrapper,
-} from "./styles/Search.styled";
+} from "./Search.styled";
 
-import search from "../assets/images/search.svg";
-import filter from "../assets/images/filter.svg";
-import useSearchStore from "../store/useSearchStore";
-import { CloseIcon, LeftArrow } from "./Icons";
+import search from "@assets/images/search.svg";
+import filter from "@assets/images/filter.svg";
+
+import { CloseIcon, LeftArrow } from "../Icons";
 import { useEffect, useRef } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+
+import { useSearchStore } from "../../store";
 
 export default function Search({
   placeholder,

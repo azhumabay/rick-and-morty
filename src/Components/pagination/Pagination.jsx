@@ -1,9 +1,5 @@
 import { useLocation } from "react-router-dom";
-import {
-  Ellipsis,
-  PaginationItem,
-  PaginationList,
-} from "./styles/Pagination.styled";
+import { Ellipsis, PaginationItem, PaginationList } from "./Pagination.styled";
 
 export default function Pagination({ pages, currentPage }) {
   const location = useLocation();

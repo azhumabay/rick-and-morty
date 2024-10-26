@@ -2,7 +2,7 @@ import CharacterItem from "./CharacterItem";
 import {
   CharacterLink,
   CharacterListStyled,
-} from "./Styles/CharacterList.styled";
+} from "./styled/CharacterList.styled";
 import APP_PATH from "../../const/router";
 
 export default function CharacterList({ list, gridView }) {

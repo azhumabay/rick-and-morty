@@ -1,5 +1,5 @@
-import EpisodeItem from "../EpisodeItem/EpisodeItem";
-import { EpisodeListStyled } from "./EpisodeList.styled";
+import EpisodeItem from "./EpisodeItem";
+import { EpisodeListStyled } from "./styled/EpisodeList.styled";
 
 export default function EpisodeList({ list }) {
   return (

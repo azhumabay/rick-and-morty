@@ -40,16 +40,4 @@ const NavItem = styled(NavLink)`
   }
 `;
 
-const IconSvg = styled.svg`
-  width: 24px;
-  height: 24px;
-  fill: ${({ theme }) => theme.colors.secondary};
-  stroke: ${({ theme }) => theme.colors.secondary};
-
-  .active & {
-    fill: ${(props) => props.theme.colors.active};
-    stroke: ${(props) => props.theme.colors.active};
-  }
-`;
-
-export { StyledHeader, NavList, NavItem, IconSvg };
+export { StyledHeader, NavList, NavItem };

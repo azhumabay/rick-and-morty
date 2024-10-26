@@ -1,11 +1,11 @@
-export { default as LocationListPage } from "./Location/LocationList/LocationListPage";
-export { default as LocationPage } from "./Location/Location/LocationPage";
+export { default as LocationListPage } from "./location/LocationListPage";
+export { default as LocationPage } from "./location/LocationPage";
 
-export { default as CharacterListPage } from "./Character/CharacterList/CharacterListPage";
-export { default as CharacterPage } from "./Character/Character/CharacterPage";
+export { default as CharacterListPage } from "./character/CharacterListPage";
+export { default as CharacterPage } from "./character/CharacterPage";
 
-export { default as EpisodeListPage } from "./Episode/EpisodeListPage/EpisodeListPage";
-export { default as EpisodePage } from "./Episode/EpisodePage/EpisodePage";
+export { default as EpisodeListPage } from "./episode/EpisodeListPage";
+export { default as EpisodePage } from "./episode/EpisodePage";
 
-export { default as SettingsPage } from "./Settings/SettingsPage";
-export { default as SplashScreen } from "./SplashScreen/SplashScreen";
+export { default as SettingsPage } from "./settings/SettingsPage";
+export { default as SplashScreen } from "./splashScreen/SplashScreen";

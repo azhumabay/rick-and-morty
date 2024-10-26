@@ -4,7 +4,7 @@ import {
   LocationImg,
   LocationInfo,
   LocationItemStyled,
-} from "./Styles/locationItem.styled";
+} from "./styled/locationItem.styled";
 import locationPlaceholder from "@assets/images/locationPlaceholder.png";
 
 export default function LocationItem({ id, name, type, dimension }) {

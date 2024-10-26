@@ -1,14 +1,18 @@
-import { genderTranslate, speciesTranslate, statusTranslate } from "../../const/translator";
+import {
+  genderTranslate,
+  speciesTranslate,
+  statusTranslate,
+} from "../../const/translator";
 import {
   CharacterGridImg,
   CharacterGridStyled,
   CharacterGridText,
-} from "./Styles/CharacterGridItem.styled";
+} from "./styled/CharacterGridItem.styled";
 import {
   CharacterTableImg,
   CharacterItemTable,
   CharacterTableText,
-} from "./Styles/CharacterTableItem.styled";
+} from "./styled/CharacterTableItem.styled";
 
 export default function CharacterItem({ character, gridView }) {
   const { image, name, species, gender, status } = character;

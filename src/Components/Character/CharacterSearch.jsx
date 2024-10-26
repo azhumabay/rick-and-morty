@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
-import { characterService } from "../../../api";
-import {
-  useCharacterStore,
-  useFetchStore,
-  useThemeStore,
-} from "../../../store";
-import CharacterList from "../CharacterList";
+import { characterService } from "../../api";
+import { useCharacterStore, useFetchStore, useThemeStore } from "../../store";
+import CharacterList from "./CharacterList";
 import {
   CharacterNotFound,
   CharacterSearchContent,
   CharacterSearchStyled,
-} from "./CharacterSearch.styled";
+} from "./styled/CharacterSearch.styled";
 import characterNotFound from "@assets/images/characterNotFound.svg";
-import Pagination from "../../Pagination";
+import Pagination from "../pagination/Pagination";
 import { useSearchParams } from "react-router-dom";
 
 export default function CharacterSearch() {

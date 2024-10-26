@@ -1,9 +1,9 @@
-import APP_PATH from "../../../const/router";
+import APP_PATH from "../../const/router";
 import {
   EpisodeItemPng,
   EpisodeItemStyled,
   EpisodeItemText,
-} from "./EpisodeItem.styled";
+} from "./styled/EpisodeItem.styled";
 import episodePlaceholder from "@assets/images/episodePlaceholder.png";
 
 export default function EpisodeItem({ id, name, air, episode }) {

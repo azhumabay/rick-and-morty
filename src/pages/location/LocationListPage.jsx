@@ -1,19 +1,19 @@
 import { useSearchParams } from "react-router-dom";
-import { useFetchStore, useSearchStore } from "../../../store";
+import { useFetchStore, useSearchStore } from "../../store";
 import { useEffect } from "react";
-import { locationService } from "../../../api";
+import { locationService } from "../../api";
 import {
   LocationFilter,
   LocationList,
   Pagination,
   Search,
-} from "../../../Components";
+} from "../../components";
 import {
   LocationInfo,
   LocationListContent,
   LocationNotFound,
-} from "./LocationListPage.styled";
-import useLocationStore from "../../../store/useLocationStore";
+} from "./styled/LocationListPage.styled";
+import useLocationStore from "../../store/useLocationStore";
 import locationNotFound from "@assets/images/locationNotFound.svg";
 
 export default function LocationPage() {

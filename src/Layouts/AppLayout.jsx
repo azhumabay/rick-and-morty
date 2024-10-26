@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom";
-import AppHeader from "../Components/AppHeader";
-import Container from "../Components/styles/Container.styled";
+
+import Container from "../components/styled/Container.styled";
 import useSearchStore from "../store/useSearchStore";
+import { AppHeader } from "../components";
 
 export default function AppLayout() {
   const { isSearchOpen } = useSearchStore();

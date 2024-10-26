@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import useFetchStore from "../../../store/useFetchStore";
-import episodeService from "../../../api/episodeService";
+import useFetchStore from "../../store/useFetchStore";
+import episodeService from "../../api/episodeService";
 import { useNavigate, useParams } from "react-router-dom";
-import characterService from "../../../api/characterService";
+import characterService from "../../api/characterService";
 import {
   EpisodeCharacters,
   EpisodeDivider,
@@ -11,11 +11,11 @@ import {
   EpisodePageInfo,
   EpisodePageMain,
   EpisodePageTitle,
-} from "./EpisodeStyled.styled";
+} from "./styled/EpisodeStyled.styled";
 
 import episodePagePlaceholder from "@assets/images/episodePagePlaceholder.png";
 import leftArrow from "@assets/images/leftArrow.svg";
-import { CharacterList } from "../../../Components";
+import { CharacterList } from "../../components";
 
 export default function EpisodePage() {
   const { fetchData } = useFetchStore();

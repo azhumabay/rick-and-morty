@@ -1,11 +1,12 @@
-import { StyledHeader, NavList, NavItem } from "./styles/Header.styled";
-import APP_PATH from "../const/router";
+import { StyledHeader, NavList, NavItem } from "./AppHeader.styled";
 import {
   CharactersIcon,
   LocationIcon,
   EpisodesIcon,
   SettingsIcon,
-} from "./Icons";
+} from "../Icons";
+
+import APP_PATH from "../../const/router";
 
 export default function AppHeader() {
   return (

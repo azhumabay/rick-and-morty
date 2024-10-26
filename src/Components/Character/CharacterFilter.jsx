@@ -4,7 +4,7 @@ import {
   CharacterFilterHeader,
   CharacterFilterItem,
   CharacterFilterStyled,
-} from "./Styles/CharacterFilter.styled";
+} from "./styled/CharacterFilter.styled";
 
 import { LeftArrow } from "../Icons";
 import { useCharacterStore, useSearchStore } from "../../store";

@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
-import { characterService } from "../../../api";
+import { characterService } from "../../api";
 import {
   CharacterInfo,
   CharacterListContent,
-} from "./CharacterListPage.styled";
+} from "./styled/CharacterListPage.styled";
 import {
   CharacterList,
   CharacterSearch,
   Pagination,
   Search,
-} from "../../../Components";
+} from "../../components";
 import {
   useCharacterStore,
   useFetchStore,
   useSearchStore,
   useThemeStore,
-} from "../../../store";
+} from "../../store";
 import { useSearchParams } from "react-router-dom";
 
 import gridSwitch from "@assets/images/gridSwitch.svg";
 import tableSwitch from "@assets/images/tableSwitch.svg";
-import CharacterFilter from "../../../Components/Character/CharacterFilter";
+import CharacterFilter from "../../components/character/CharacterFilter";
 
 export default function CharactersPage() {
   const { response, fetchData } = useFetchStore();
