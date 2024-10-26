@@ -2,10 +2,10 @@ import styled, { keyframes } from "styled-components";
 
 const slideUp = keyframes`
   from {
-    transform: translateY(5px);
+    transform: translateY(20px);
   }
   to {
-    transform: translateY(-20px);
+    transform: translateY(0px);
   }
 `;
 
@@ -19,10 +19,11 @@ const slideDown = keyframes`
 `;
 
 const SplashScreenStyled = styled.div`
-  max-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   overflow: hidden;
 `;
 
@@ -43,15 +44,7 @@ const SplashScreenMorty = styled.img`
 
 const SplashScreenRick = styled.img`
   width: calc(40vh);
-  height: calc(40vh);
   animation: ${slideUp} 2s ease forwards;
-`;
-
-const SplashScreenImgWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
 `;
 
 export {
@@ -59,5 +52,4 @@ export {
   SplashScreenTitle,
   SplashScreenMorty,
   SplashScreenRick,
-  SplashScreenImgWrapper,
 };
