@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 const LocationFilterHeader = styled.div`
   position: fixed;
-  left: 0;
   top: 0;
   width: 100%;
+  max-width: 430px;
   height: 52px;
   background-color: ${({ theme }) => theme.colors.primary};
 
@@ -12,6 +12,10 @@ const LocationFilterHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: 431px) {
+    left: 0;
+  }
 
   div {
     display: flex;

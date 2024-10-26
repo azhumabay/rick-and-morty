@@ -7,7 +7,7 @@ import {
 } from "./styled/CharacterFilter.styled";
 
 import { LeftArrow } from "../Icons";
-import { useCharacterStore, useSearchStore } from "../../store";
+import { useCharacterStore } from "../../store";
 import resetFilter from "@assets/images/resetFilter.svg";
 
 const Checkbox = ({ id, label, onChange, name, checked }) => (
