@@ -9,13 +9,14 @@ import {
   LocationPage,
   EpisodeListPage,
   EpisodePage,
+  SplashScreen,
 } from "../pages";
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
     children: [
-      { index: true, element: <Navigate to={APP_PATH.CHARACTERS} replace /> },
+      { index: true, element: <SplashScreen /> },
       { path: APP_PATH.CHARACTERS, element: <CharacterListPage /> },
       { path: `${APP_PATH.CHARACTERS}/:id`, element: <CharacterPage /> },
 

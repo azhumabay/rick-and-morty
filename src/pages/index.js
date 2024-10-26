@@ -8,3 +8,4 @@ export { default as EpisodeListPage } from "./Episode/EpisodeListPage/EpisodeLis
 export { default as EpisodePage } from "./Episode/EpisodePage/EpisodePage";
 
 export { default as SettingsPage } from "./Settings/SettingsPage";
+export { default as SplashScreen } from "./SplashScreen/SplashScreen";
