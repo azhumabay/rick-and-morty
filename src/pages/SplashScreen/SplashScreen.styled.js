@@ -2,19 +2,19 @@ import styled, { keyframes } from "styled-components";
 
 const slideUp = keyframes`
   from {
-    transform: translateY(-30px);
+    transform: translateY(5px);
   }
   to {
-    transform: translateY(-50px);
+    transform: translateY(-20px);
   }
 `;
 
 const slideDown = keyframes`
   from {
-    transform: translateY(-60px);
+    transform: translateY(-25px);
   }
   to {
-    transform: translateY(-40px);
+    transform: translateY(-10px);
   }
 `;
 
@@ -27,17 +27,18 @@ const SplashScreenStyled = styled.div`
 `;
 
 const SplashScreenTitle = styled.img`
-  margin-top: 12px;
+  margin-top: 42px;
   object-fit: contain;
-  width: calc(40vh);
-  height: calc(40vh);
+  width: calc(45vh);
+  height: calc(45vh);
 `;
 
 const SplashScreenMorty = styled.img`
   width: calc(40vh);
-  height: calc(40vh);
+  height: calc(25vh);
   flex-grow: 1;
   object-fit: cover;
+  object-position: bottom;
   animation: ${slideDown} 2s ease forwards;
 `;
 

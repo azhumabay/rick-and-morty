@@ -1,4 +1,5 @@
 const APP_PATH = {
+  MAIN: "/",
   CHARACTERS: "/character",
   LOCATIONS: "/location",
   EPISODES: "/episodes",

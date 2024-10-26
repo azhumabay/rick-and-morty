@@ -13,10 +13,10 @@ import {
 } from "../pages";
 
 const router = createBrowserRouter([
+  { path: APP_PATH.MAIN, element: <SplashScreen /> },
   {
     element: <AppLayout />,
     children: [
-      { index: true, element: <SplashScreen /> },
       { path: APP_PATH.CHARACTERS, element: <CharacterListPage /> },
       { path: `${APP_PATH.CHARACTERS}/:id`, element: <CharacterPage /> },
 
