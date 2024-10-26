@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 
 const slideUp = keyframes`
   from {
-    transform: translateY(20px);
+    transform: translateY(-30px);
   }
   to {
     transform: translateY(-50px);
@@ -11,10 +11,10 @@ const slideUp = keyframes`
 
 const slideDown = keyframes`
   from {
-    transform: translateY(-40px);
+    transform: translateY(-60px);
   }
   to {
-    transform: translateY(-30px);
+    transform: translateY(-40px);
   }
 `;
 
@@ -37,6 +37,7 @@ const SplashScreenMorty = styled.img`
   width: calc(40vh);
   height: calc(40vh);
   flex-grow: 1;
+  object-fit: cover;
   animation: ${slideDown} 2s ease forwards;
 `;
 

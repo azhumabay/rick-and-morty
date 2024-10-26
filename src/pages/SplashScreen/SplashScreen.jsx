@@ -8,19 +8,19 @@ import {
   SplashScreenTitle,
 } from "./SplashScreen.styled";
 import splashTitle from "@assets/images/splashScreenTitle.png";
-import splashMorty from "@assets/images/splashScreenMorty.png";
-import splashRick from "@assets/images/splashScreenRick.png";
+import splashMorty from "@assets/images/splashScreenMorty.svg";
+import splashRick from "@assets/images/splashScreenRick.svg";
 
 export default function SplashScreen() {
   const navgiate = useNavigate();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      navgiate(APP_PATH.CHARACTERS);
-    }, 3000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     navgiate(APP_PATH.CHARACTERS);
+  //   }, 3000);
 
-    return () => clearTimeout(timer);
-  }, [navgiate]);
+  //   return () => clearTimeout(timer);
+  // }, [navgiate]);
 
   return (
     <SplashScreenStyled>
