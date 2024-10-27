@@ -5,7 +5,7 @@ import {
   Theme,
   ThemeText,
 } from "./Settings.styled";
-import { RightArrow, ThemeIcon, LeftArrow } from "../../Components/Icons";
+import { RightArrow, ThemeIcon, LeftArrow } from "../../components/Icons";
 import SettingsModal from "./SettingsModal";
 import { useState } from "react";
 import useThemeStore from "../../store/useThemeStore";
