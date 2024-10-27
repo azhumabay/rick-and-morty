@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import AppLayout from "../Layouts/AppLayout";
+import AppLayout from "../layouts/AppLayout";
 import APP_PATH from "../const/router";
 import {
   CharacterPage,
