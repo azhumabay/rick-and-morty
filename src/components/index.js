@@ -7,6 +7,6 @@ export { default as CharacteFilter } from "./character/CharacterFilter";
 export { default as CharacterSearch } from "./character/CharacterSearch";
 
 export { default as LocationList } from "./location/LocationList";
-export { default as LocationFilter } from "./location/locationFilter/LocationFilter";
+export { default as LocationFilter } from "./location/LocationFilter";
 
 export { default as EpisodeList } from "./episode/EpisodeList";

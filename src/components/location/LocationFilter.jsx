@@ -4,11 +4,11 @@ import {
   LocationFilterHeader,
   LocationFilterSection,
   LocationListWrapper,
-} from "./LocationFilter.styled";
-import { LeftArrow, RightArrow } from "../../Icons";
-import useLocationStore from "../../../store/useLocationStore";
+} from "./styled/LocationFilter.styled";
+import { LeftArrow, RightArrow } from "../Icons";
+import useLocationStore from "../../store/useLocationStore";
 import { useState } from "react";
-import { typeTranslate } from "../../../const/translator";
+import { typeTranslate } from "../../const/translator";
 import resetFilter from "@assets/images/resetFilter.svg";
 
 export default function LocationFilter() {
