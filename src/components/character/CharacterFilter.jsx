@@ -7,7 +7,7 @@ import {
 } from "./styled/CharacterFilter.styled";
 
 import { LeftArrow } from "../Icons";
-import { useCharacterStore } from "../../store";
+import { useCharacterStore, useSearchStore } from "../../store";
 import resetFilter from "@assets/images/resetFilter.svg";
 
 const Checkbox = ({ id, label, onChange, name, checked }) => (
@@ -24,8 +24,8 @@ const Checkbox = ({ id, label, onChange, name, checked }) => (
 );
 
 export default function CharacterFilter({ setCurrentPage }) {
-  const { closeCharacterFilter, status, gender, setGender, setStatus } =
-    useCharacterStore();
+  const { status, gender, setGender, setStatus } = useCharacterStore();
+  const { closeFilter } = useSearchStore();
 
   const genderHandler = (event) => {
     setGender(event.target.id);
@@ -47,7 +47,7 @@ export default function CharacterFilter({ setCurrentPage }) {
     <>
       <CharacterFilterHeader>
         <div>
-          <LeftArrow onClick={closeCharacterFilter} />
+          <LeftArrow onClick={closeFilter} />
           <h1>Фильтры</h1>
         </div>
         {(status || gender) && (

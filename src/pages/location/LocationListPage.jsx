@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
-import { useFetchStore, useSearchStore } from "../../store";
-import { useEffect } from "react";
-import { locationService } from "../../api";
+import { useSearchStore } from "../../store";
+import { useEffect, useState } from "react";
+
 import {
   LocationFilter,
   LocationList,
@@ -17,18 +17,10 @@ import useLocationStore from "../../store/useLocationStore";
 import locationNotFound from "@assets/images/locationNotFound.svg";
 
 export default function LocationPage() {
-  const { response, fetchData, error } = useFetchStore();
-  const { isSearchOpen } = useSearchStore();
-  const {
-    locationFilter,
-    openFilter,
-    type,
-    locationName,
-    setLocationName,
-    currentPage,
-    setCurrentPage,
-  } = useLocationStore();
-
+  const { isSearchOpen, isFilterOpen, openFilter } = useSearchStore();
+  const { type, searchName, setSearchName, listData, fetchList, error } =
+    useLocationStore();
+  const [currentPage, setCurrentPage] = useState(1);
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
@@ -37,48 +29,39 @@ export default function LocationPage() {
 
   useEffect(() => {
     if (type !== null) {
-      if (locationName.length > 0) {
-        fetchData(
-          locationService.getLocationList,
-          `${currentPage}&type=${type}&name=${locationName}`
-        );
+      if (searchName.length > 0) {
+        fetchList(`${currentPage}&type=${type}&name=${searchName}`);
       } else {
-        fetchData(
-          locationService.getLocationList,
-          `${currentPage}&type=${type}`
-        );
+        fetchList(`${currentPage}&type=${type}`);
       }
     } else {
-      if (locationName.length > 0) {
-        fetchData(
-          locationService.getLocationList,
-          `${currentPage}&name=${locationName}`
-        );
+      if (searchName.length > 0) {
+        fetchList(`${currentPage}&name=${searchName}`);
       } else {
-        fetchData(locationService.getLocationList, currentPage);
+        fetchList(currentPage);
       }
     }
-  }, [currentPage, type, locationName, fetchData]);
+  }, [currentPage, type, searchName, fetchList]);
 
-  const locationList = response.results || [];
-  const info = response.info || {};
+  const locationList = listData.results || [];
+  const info = listData.info || {};
 
   return (
     <>
-      {locationFilter ? (
+      {isFilterOpen ? (
         <LocationFilter />
       ) : (
         <Search
           placeholder="Найти локацию"
           isFilter={true}
           openFilter={openFilter}
-          name={locationName}
-          setName={setLocationName}
+          name={searchName}
+          setName={setSearchName}
           setCurrentPage={setCurrentPage}
         />
       )}
 
-      {!locationFilter && !error && (
+      {!isFilterOpen && !error && (
         <>
           <LocationInfo>ВСЕГО ЛОКАЦИЙ: {info.count}</LocationInfo>
 

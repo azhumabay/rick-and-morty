@@ -84,12 +84,13 @@ const EpisodeDivider = styled.div`
 const EpisodeCharacters = styled.div`
   padding-bottom: 80px;
 
-  h2 {
+  & > h2 {
     color: ${({ theme }) => theme.colors.text};
     font-weight: 500;
     font-size: 20px;
     line-height: 28px;
     letter-spacing: 0.15px;
+    margin-bottom: 24px;
   }
 `;
 

@@ -1,6 +1,5 @@
-import { useEffect } from "react";
-import { useFetchStore } from "../../store";
-import { characterService } from "../../api";
+import { useEffect, useState } from "react";
+import { useCharacterStore, useEpisodeStore } from "../../store";
 import { useNavigate, useParams } from "react-router-dom";
 import { RightArrow } from "../../components/Icons";
 import APP_PATH from "../../const/router";
@@ -30,16 +29,39 @@ import {
   speciesTranslate,
   statusTranslate,
 } from "../../const/translator";
+import { EpisodeList } from "../../components";
 
 export default function CharacterPage() {
-  const { response, fetchData } = useFetchStore();
-  const { image, name, status, origin, location, gender, species } = response;
+  const { character, fetchCharacter, resetCharacter } = useCharacterStore();
+  const { fetchEpisode, resetEpisode } = useEpisodeStore();
+  const { image, name, status, origin, location, gender, species } = character;
+  const [characterEpisodes, setCharacterEpisodes] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchData(characterService.getCharacter, id);
+    fetchCharacter(id);
+
+    return () => {
+      resetCharacter();
+      resetEpisode();
+    };
   }, []);
+
+  useEffect(() => {
+    if (character?.episode?.length > 0) {
+      const fetchEpisodes = async () => {
+        const episodeIds = character.episode.map((url) => url.split("/").pop());
+
+        const charactersData = await fetchEpisode(episodeIds);
+        setCharacterEpisodes(
+          Array.isArray(charactersData) ? charactersData : [charactersData]
+        );
+      };
+
+      fetchEpisodes();
+    }
+  }, [character]);
 
   const goBack = () => {
     navigate(-1);
@@ -104,14 +126,16 @@ export default function CharacterPage() {
         </CharacterInfoWrapper>
       </CharacterMain>
 
-      {/* <CharacterDivider />
+      <CharacterDivider />
 
       <CharacterEpisodes>
         <CharacterEpisodesInfo>
           <h2>Эпизоды</h2>
           <span>Все эпизоды</span>
         </CharacterEpisodesInfo>
-      </CharacterEpisodes> */}
+
+        <EpisodeList list={characterEpisodes} />
+      </CharacterEpisodes>
     </CharacterPageStyled>
   );
 }

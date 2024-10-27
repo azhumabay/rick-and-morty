@@ -1,40 +1,31 @@
 import { useEffect, useState } from "react";
-import { characterService } from "../../api";
 import {
   CharacterInfo,
   CharacterListContent,
+  CharacterNotFound,
 } from "./styled/CharacterListPage.styled";
-import {
-  CharacterList,
-  CharacterSearch,
-  Pagination,
-  Search,
-} from "../../components";
-import {
-  useCharacterStore,
-  useFetchStore,
-  useSearchStore,
-  useThemeStore,
-} from "../../store";
+import { CharacterList, Pagination, Search } from "../../components";
+import { useCharacterStore, useSearchStore, useThemeStore } from "../../store";
 import { useSearchParams } from "react-router-dom";
 
 import gridSwitch from "@assets/images/gridSwitch.svg";
 import tableSwitch from "@assets/images/tableSwitch.svg";
+import characterNotFound from "@assets/images/characterNotFound.svg";
 import CharacterFilter from "../../components/character/CharacterFilter";
 
 export default function CharactersPage() {
-  const { response, fetchData } = useFetchStore();
   const {
+    listData,
+    fetchList,
     searchName,
     setSearchName,
-    openCharacterFilter,
-    isCharacterFilterOpen,
+    status,
+    gender,
+    error,
   } = useCharacterStore();
-  const { isSearchOpen } = useSearchStore();
-  const { status, gender } = useCharacterStore();
+  const { isSearchOpen, openFilter, isFilterOpen } = useSearchStore();
   const { isGridView, toggleGridView } = useThemeStore();
   const [currentPage, setCurrentPage] = useState(1);
-
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
@@ -43,36 +34,22 @@ export default function CharactersPage() {
   }, [searchParams]);
 
   useEffect(() => {
-    const fetchParams = [];
+    const fetchFilter = [];
 
-    if (status !== "") {
-      fetchParams.push(`status=${status}`);
-    }
+    if (status) fetchFilter.push(`status=${status}`);
+    if (gender) fetchFilter.push(`gender=${gender}`);
+    if (searchName) fetchFilter.push(`name=${searchName}`);
 
-    if (gender !== "") {
-      fetchParams.push(`gender=${gender}`);
-    }
+    const query = fetchFilter.length > 0 ? `&${fetchFilter.join("&")}` : "";
+    fetchList(`${currentPage}${query}`);
+  }, [currentPage, status, gender, fetchList, searchName]);
 
-    let query;
-
-    if (!isSearchOpen) {
-      query =
-        fetchParams.length > 0
-          ? `?page=${currentPage}&${fetchParams.join("&")}`
-          : `?page=${currentPage}`;
-    }
-
-    if (!isSearchOpen) {
-      fetchData(characterService.getFilteredCharacterList, query);
-    }
-  }, [currentPage, status, gender, searchName, isSearchOpen]);
-
-  const characterList = response.results || [];
-  const info = response.info || {};
+  const characterList = listData.results || [];
+  const info = listData.info || {};
 
   return (
     <>
-      {isCharacterFilterOpen ? (
+      {isFilterOpen ? (
         <CharacterFilter setCurrentPage={setCurrentPage} />
       ) : (
         <>
@@ -81,30 +58,39 @@ export default function CharactersPage() {
             isFilter={true}
             setName={setSearchName}
             name={searchName}
-            openFilter={openCharacterFilter}
+            openFilter={openFilter}
             setCurrentPage={setCurrentPage}
           />
         </>
       )}
 
-      {!isCharacterFilterOpen && !isSearchOpen && (
+      {!isFilterOpen && (
         <>
-          <CharacterInfo>
-            <span>ВСЕГО ПЕРСОНАЖЕЙ: {info.count}</span>
+          <CharacterInfo $isSearchOpen={isSearchOpen}>
+            <span>
+              {!isSearchOpen
+                ? `ВСЕГО ПЕРСОНАЖЕЙ: ${info.count}`
+                : "Результаты поиска"}
+            </span>
             <img
               src={isGridView ? tableSwitch : gridSwitch}
               onClick={toggleGridView}
             />
           </CharacterInfo>
 
-          <CharacterListContent>
-            <CharacterList list={characterList} gridView={isGridView} />
-            <Pagination pages={info.pages} currentPage={currentPage} />
-          </CharacterListContent>
+          {!error ? (
+            <CharacterListContent>
+              <CharacterList list={characterList} gridView={isGridView} />
+              <Pagination pages={info.pages} currentPage={currentPage} />
+            </CharacterListContent>
+          ) : (
+            <CharacterNotFound>
+              <img src={characterNotFound} />
+              <p>Персонаж с таким именем не найден</p>
+            </CharacterNotFound>
+          )}
         </>
       )}
-
-      {isSearchOpen && <CharacterSearch />}
     </>
   );
 }

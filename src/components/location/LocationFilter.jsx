@@ -10,9 +10,11 @@ import useLocationStore from "../../store/useLocationStore";
 import { useState } from "react";
 import { typeTranslate } from "../../const/translator";
 import resetFilter from "@assets/images/resetFilter.svg";
+import { useSearchStore } from "../../store";
 
 export default function LocationFilter() {
-  const { closeFilter, type, dimension, setType } = useLocationStore();
+  const { closeFilter } = useSearchStore();
+  const { type, dimension, setType } = useLocationStore();
   const [isType, setIsType] = useState(false);
 
   const openIsType = () => {

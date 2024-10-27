@@ -130,13 +130,14 @@ const CharacterDivider = styled.div`
 `;
 
 const CharacterEpisodes = styled.div`
-  padding: 0 16px;
+  margin-bottom: 70px;
 `;
 
 const CharacterEpisodesInfo = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 24px;
 
   h2 {
     color: ${({ theme }) => theme.colors.text};

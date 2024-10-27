@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { useFetchStore } from "../../store";
+import { useCharacterStore } from "../../store";
 import { useNavigate, useParams } from "react-router-dom";
-import { characterService, locationService } from "../../api";
 import { dimensionTranslate, typeTranslate } from "../../const/translator";
 import {
   LocationBack,
@@ -14,36 +13,33 @@ import { CharacterList } from "../../components";
 
 import locationPlaceholder from "@assets/images/locationPlaceholder.png";
 import leftArrow from "@assets/images/leftArrow.svg";
+import useLocationStore from "../../store/useLocationStore";
 
 export default function LocationPage() {
-  const { fetchData } = useFetchStore();
-
-  const [location, setLocation] = useState(null);
+  const { fetchCharacter } = useCharacterStore();
+  const { location, fetchLocation, resetLocation } = useLocationStore();
   const [characterList, setCharacterList] = useState(null);
 
   const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchLocation = async () => {
-      const locationData = await fetchData(locationService.getLocation, id);
-      setLocation(locationData);
-    };
+    fetchLocation(id);
 
-    fetchLocation();
+    return () => {
+      resetLocation();
+    };
   }, []);
 
   useEffect(() => {
-    if (location && location.residents.length > 0) {
+    if (location?.residents?.length > 0) {
       const fetchCharacters = async () => {
         const characterIds = location.residents.map((url) =>
           url.split("/").pop()
         );
 
-        const charactersData = await fetchData(
-          characterService.getCharacter,
-          characterIds.join(",")
-        );
+        const charactersData = await fetchCharacter(characterIds);
+
         setCharacterList(
           Array.isArray(charactersData) ? charactersData : [charactersData]
         );

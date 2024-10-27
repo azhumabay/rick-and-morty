@@ -24,7 +24,6 @@ const typeTranslate = {
   Country: "Страна",
   "Police Department": "Полицейский участок",
   Menagerie: "Менажерия",
-  unknown: "неизвестно",
   Game: "Игра",
   Customs: "Таможня",
   Box: "Коробка",
@@ -45,6 +44,7 @@ const typeTranslate = {
   "Non-Diegetic Alternative Reality":
     "Недиегетическая альтернативная реальность",
   Nightmare: "Кошмар",
+  unknown: "Неизвестно",
 };
 
 const speciesTranslate = {

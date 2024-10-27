@@ -1,20 +1,48 @@
 import { create } from "zustand";
+import { characterService } from "../api";
 
 const useCharacterStore = create((set) => ({
-  isCharacterFilterOpen: false,
-  pages: null,
+  listData: [],
+  character: {},
+  error: null,
+  loading: false,
+
   searchName: "",
   gender: "",
   status: "",
 
-  setPages: (pagesNum) => set({ pages: pagesNum }),
   setSearchName: (name) => set({ searchName: name }),
-
-  openCharacterFilter: () => set({ isCharacterFilterOpen: true }),
-  closeCharacterFilter: () => set({ isCharacterFilterOpen: false }),
-
   setGender: (queryGender) => set({ gender: queryGender }),
   setStatus: (queryStatus) => set({ status: queryStatus }),
+  resetCharacter: () => set({ character: {} }),
+
+  fetchList: async (params) => {
+    set({ loading: true, error: null });
+    try {
+      const result = await characterService.getCharacterList(params);
+      set({ listData: result });
+      return result;
+    } catch (error) {
+      set({ listData: [] });
+      set({ error: error.message });
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  fetchCharacter: async (params) => {
+    set({ loading: true, error: null });
+    try {
+      const result = await characterService.getCharacter(params);
+      set({ character: result });
+      return result;
+    } catch (error) {
+      set({ character: [] });
+      set({ error: error.message });
+    } finally {
+      set({ loading: false });
+    }
+  },
 }));
 
 export default useCharacterStore;

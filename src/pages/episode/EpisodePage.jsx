@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import useFetchStore from "../../store/useFetchStore";
-import episodeService from "../../api/episodeService";
 import { useNavigate, useParams } from "react-router-dom";
-import characterService from "../../api/characterService";
 import {
   EpisodeCharacters,
   EpisodeDivider,
@@ -16,40 +13,37 @@ import {
 import episodePagePlaceholder from "@assets/images/episodePagePlaceholder.png";
 import leftArrow from "@assets/images/leftArrow.svg";
 import { CharacterList } from "../../components";
+import { useCharacterStore, useEpisodeStore } from "../../store";
 
 export default function EpisodePage() {
-  const { fetchData } = useFetchStore();
-  const [episode, setEpisode] = useState(null);
+  const { fetchCharacter } = useCharacterStore();
+  const { fetchEpisode, episode, resetEpisode } = useEpisodeStore();
+
   const [characterList, setCharacterList] = useState([]);
   const navigate = useNavigate();
 
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchEpisode = async () => {
-      const episodeData = await fetchData(episodeService.getEpisode, id);
-      setEpisode(episodeData);
-    };
+    fetchEpisode(id);
 
-    fetchEpisode();
-  }, []);
+    return () => {
+      resetEpisode();
+    };
+  }, [id, fetchEpisode, resetEpisode]);
 
   useEffect(() => {
-    if (episode && episode.characters.length > 0) {
+    if (episode && episode.characters?.length > 0) {
       const fetchCharacters = async () => {
-        const characterListData = await fetchData(
-          characterService.getCharacter,
-          episode.characters.map((character) => {
-            return character.split("/").pop();
-          })
+        const characterListData = await fetchCharacter(
+          episode.characters.map((character) => character.split("/").pop())
         );
-
         setCharacterList(characterListData);
       };
 
       fetchCharacters();
     }
-  }, [episode]);
+  }, [episode, fetchCharacter]);
 
   const goBack = () => {
     navigate(-1);
