@@ -57,7 +57,6 @@ export default function CharactersPage() {
             placeholder="Найти персонажа"
             isFilter={true}
             setName={setSearchName}
-            name={searchName}
             openFilter={openFilter}
             setCurrentPage={setCurrentPage}
           />

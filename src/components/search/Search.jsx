@@ -7,12 +7,12 @@ import {
   FilterLogo,
   OpenSearchWrapper,
 } from "./Search.styled";
-
+import { debounce } from "lodash";
 import search from "@assets/images/search.svg";
 import filter from "@assets/images/filter.svg";
 
 import { CloseIcon, LeftArrow } from "../Icons";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useSearchStore } from "../../store";
 
@@ -20,10 +20,10 @@ export default function Search({
   placeholder,
   isFilter = false,
   setName,
-  name,
   openFilter,
   setCurrentPage,
 }) {
+  const [input, setInput] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,9 +32,17 @@ export default function Search({
   const searchInputRef = useRef(null);
 
   useEffect(() => {
-    if (isSearchOpen && searchInputRef.current) {
-      searchInputRef.current.focus();
+    if (isSearchOpen) {
+      if (searchInputRef.current) searchInputRef.current.focus();
+    } else {
+      debounceOnChange.cancel();
+      setInput("");
     }
+
+    return () => {
+      debounceOnChange.cancel();
+      setInput("");
+    };
   }, [isSearchOpen]);
 
   const closeSearchHandler = () => {
@@ -53,6 +61,20 @@ export default function Search({
     setSearchParams({});
   };
 
+  const debounceOnChange = useCallback(
+    debounce((value) => {
+      setName(value);
+      setCurrentPage(1);
+      setSearchParams({});
+    }, 800),
+    []
+  );
+
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+    debounceOnChange(e.target.value);
+  };
+
   return (
     <>
       {isSearchOpen ? (
@@ -61,12 +83,8 @@ export default function Search({
           <SearchInput
             ref={searchInputRef}
             placeholder={placeholder}
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-              setCurrentPage(1);
-              setSearchParams({});
-            }}
+            value={input}
+            onChange={handleInputChange}
           />
           <CloseIcon onClick={closeSearchHandler} />
         </OpenSearchWrapper>

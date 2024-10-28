@@ -31,7 +31,6 @@ export default function EpisodeListPage() {
     <>
       <Search
         placeholder={"Найти эпизод"}
-        name={searchName}
         setName={setSearchName}
         setCurrentPage={setCurrentPage}
       />

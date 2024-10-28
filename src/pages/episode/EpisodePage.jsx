@@ -33,7 +33,7 @@ export default function EpisodePage() {
   }, [id, fetchEpisode, resetEpisode]);
 
   useEffect(() => {
-    if (episode && episode.characters?.length > 0) {
+    if (episode?.characters?.length > 0) {
       const fetchCharacters = async () => {
         const characterListData = await fetchCharacter(
           episode.characters.map((character) => character.split("/").pop())

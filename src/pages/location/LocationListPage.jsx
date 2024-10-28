@@ -55,7 +55,6 @@ export default function LocationPage() {
           placeholder="Найти локацию"
           isFilter={true}
           openFilter={openFilter}
-          name={searchName}
           setName={setSearchName}
           setCurrentPage={setCurrentPage}
         />
