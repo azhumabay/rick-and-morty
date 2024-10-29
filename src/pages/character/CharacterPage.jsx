@@ -3,6 +3,7 @@ import { useCharacterStore, useEpisodeStore } from "../../store";
 import { useNavigate, useParams } from "react-router-dom";
 import { RightArrow } from "../../components/Icons";
 import APP_PATH from "../../const/router";
+import Skeleton from "react-loading-skeleton";
 
 import {
   CharacterBack,
@@ -32,7 +33,8 @@ import {
 import { EpisodeList } from "../../components";
 
 export default function CharacterPage() {
-  const { character, fetchCharacter, resetCharacter } = useCharacterStore();
+  const { character, fetchCharacter, resetCharacter, loading } =
+    useCharacterStore();
   const { fetchEpisode, resetEpisode } = useEpisodeStore();
   const { image, name, status, origin, location, gender, species } = character;
   const [characterEpisodes, setCharacterEpisodes] = useState([]);
@@ -83,35 +85,54 @@ export default function CharacterPage() {
           <img src={leftArrow} />
         </CharacterBack>
 
-        <CharacterHeader src={image} />
+        {loading ? (
+          <Skeleton height={218} width="100%" />
+        ) : (
+          <CharacterHeader src={image} />
+        )}
         <CharacterHeaderBlur />
 
-        <CharacterImg src={image} />
+        {loading ? (
+          <Skeleton
+            circle={true}
+            height={146}
+            width={146}
+            style={{
+              position: "absolute",
+              top: "calc(218px - 73px)",
+              left: "50%",
+              transform: "translateX(-50%)",
+              zIndex: "1",
+            }}
+          />
+        ) : (
+          <CharacterImg src={image} />
+        )}
       </CharacterHeaderWrapper>
 
       <CharacterMain>
         <CharacterTitle $statuscolor={status}>
-          <h1>{name}</h1>
-          <span>{statusRus}</span>
+          <h1>{loading ? <Skeleton width={100} /> : name}</h1>
+          <span>{loading ? <Skeleton width={60} /> : statusRus}</span>
         </CharacterTitle>
 
         <CharacterInfoWrapper>
           <CharacterInfo>
             <div>
               <span>Пол</span>
-              <p>{genderRus}</p>
+              <p>{loading ? <Skeleton width={80} /> : genderRus}</p>
             </div>
 
             <div>
               <span>Расса</span>
-              <p>{speciesRus}</p>
+              <p>{loading ? <Skeleton width={80} /> : speciesRus}</p>
             </div>
           </CharacterInfo>
 
           <CharacterPlace to={`${APP_PATH.LOCATIONS}/${originId}`}>
             <div>
               <span>Место рождения</span>
-              <p>{originRus}</p>
+              <p>{loading ? <Skeleton width={120} /> : originRus}</p>
             </div>
             <RightArrow />
           </CharacterPlace>
@@ -119,7 +140,7 @@ export default function CharacterPage() {
           <CharacterPlace to={`${APP_PATH.LOCATIONS}/${locationId}`}>
             <div>
               <span>Местоположение</span>
-              <p>{locationRus}</p>
+              <p>{loading ? <Skeleton width={120} /> : locationRus}</p>
             </div>
             <RightArrow />
           </CharacterPlace>
@@ -134,7 +155,11 @@ export default function CharacterPage() {
           <span>Все эпизоды</span>
         </CharacterEpisodesInfo>
 
-        <EpisodeList list={characterEpisodes} />
+        {characterEpisodes.length > 0 ? (
+          <EpisodeList list={characterEpisodes} />
+        ) : (
+          <Skeleton count={1} height={30} />
+        )}
       </CharacterEpisodes>
     </CharacterPageStyled>
   );

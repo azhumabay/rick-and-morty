@@ -5,8 +5,17 @@ const PaginationList = styled.div`
   display: flex;
   justify-content: center;
   gap: 5px;
+  background-color: ${({ theme }) => theme.colors.primary};
 
-  margin-bottom: 100px;
+  position: fixed;
+  bottom: ${({ $isSearchOpen }) => ($isSearchOpen ? "0px" : "60px")};
+  padding: ${({ $isSearchOpen }) => ($isSearchOpen ? "20px 0" : "10px 0")};
+  width: 430px;
+
+  @media screen and (max-width: 431px) {
+    width: 100%;
+    left: 0;
+  }
 `;
 
 const PaginationItem = styled(NavLink)`

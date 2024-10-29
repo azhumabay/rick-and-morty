@@ -1,8 +1,10 @@
 import { useLocation } from "react-router-dom";
 import { Ellipsis, PaginationItem, PaginationList } from "./Pagination.styled";
+import { useSearchStore } from "../../store";
 
 export default function Pagination({ pages, currentPage }) {
   const location = useLocation();
+  const { isSearchOpen } = useSearchStore();
 
   const getPageNumbers = () => {
     const pageNumbers = [];
@@ -33,7 +35,7 @@ export default function Pagination({ pages, currentPage }) {
   };
 
   return (
-    <PaginationList>
+    <PaginationList $isSearchOpen={isSearchOpen}>
       {getPageNumbers().map((page, index) =>
         page === "..." ? (
           <Ellipsis key={index}>...</Ellipsis>

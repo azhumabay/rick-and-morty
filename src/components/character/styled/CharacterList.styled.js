@@ -12,7 +12,7 @@ const CharacterListStyled = styled.ul`
   grid-template-columns: ${({ $isGridView }) =>
     $isGridView ? "1fr 1fr" : "none"};
   gap: 24px;
-  margin-bottom: 24px;
+  margin-bottom: 140px;
 `;
 
 const CharacterLink = styled(Link)`

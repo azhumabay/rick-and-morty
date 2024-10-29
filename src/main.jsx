@@ -5,6 +5,8 @@ import router from "./router/router.jsx";
 import GlobalStyles from "@components/styled/Global.js";
 import useThemeStore from "./store/useThemeStore.js";
 import { darkTheme, lightTheme } from "./const/theme.js";
+import "react-loading-skeleton/dist/skeleton.css";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 const App = () => {
   const { isDarkMode } = useThemeStore();
@@ -12,7 +14,16 @@ const App = () => {
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <GlobalStyles />
-      <RouterProvider router={router} />
+      <SkeletonTheme
+        baseColor={
+          isDarkMode ? darkTheme.colors.primary : lightTheme.colors.primary
+        }
+        highlightColor={
+          isDarkMode ? darkTheme.colors.secondary : lightTheme.colors.secondary
+        }
+      >
+        <RouterProvider router={router} />
+      </SkeletonTheme>
     </ThemeProvider>
   );
 };

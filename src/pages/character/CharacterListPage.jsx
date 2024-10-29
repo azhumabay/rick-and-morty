@@ -4,7 +4,12 @@ import {
   CharacterListContent,
   CharacterNotFound,
 } from "./styled/CharacterListPage.styled";
-import { CharacterList, Pagination, Search } from "../../components";
+import {
+  CharacterList,
+  CharacterListSkeleton,
+  Pagination,
+  Search,
+} from "../../components";
 import { useCharacterStore, useSearchStore, useThemeStore } from "../../store";
 import { useSearchParams } from "react-router-dom";
 
@@ -15,6 +20,7 @@ import CharacterFilter from "../../components/character/CharacterFilter";
 
 export default function CharactersPage() {
   const {
+    loading,
     listData,
     fetchList,
     searchName,
@@ -79,8 +85,17 @@ export default function CharactersPage() {
 
           {!error ? (
             <CharacterListContent>
-              <CharacterList list={characterList} gridView={isGridView} />
-              <Pagination pages={info.pages} currentPage={currentPage} />
+              {loading ? (
+                <>
+                  <CharacterListSkeleton cards={8} />
+                  <Pagination pages={info.pages} currentPage={currentPage} />
+                </>
+              ) : (
+                <>
+                  <CharacterList list={characterList} gridView={isGridView} />
+                  <Pagination pages={info.pages} currentPage={currentPage} />
+                </>
+              )}
             </CharacterListContent>
           ) : (
             <CharacterNotFound>
