@@ -12,10 +12,10 @@ const slideUp = keyframes`
 
 const slideDown = keyframes`
   from {
-    transform: translateY(-25px);
+    transform: translateY(0px);
   }
   to {
-    transform: translateY(-10px);
+    transform: translateY(15px);
   }
 `;
 
@@ -42,12 +42,12 @@ const SplashScreenBackground = styled.div`
 const SplashScreenTitle = styled.img`
   object-fit: contain;
   width: calc(45vh);
-  height: calc(45vh);
+  height: calc(45dvh);
 `;
 
 const SplashScreenMorty = styled.img`
   width: calc(40vh);
-  height: calc(25vh);
+  height: calc(25dvh);
 
   object-fit: cover;
   object-position: bottom;

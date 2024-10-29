@@ -15,13 +15,13 @@ import splashRick from "@assets/images/splashScreenRick.svg";
 export default function SplashScreen() {
   const navgiate = useNavigate();
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     navgiate(APP_PATH.CHARACTERS);
-  //   }, 3000);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navgiate(APP_PATH.CHARACTERS);
+    }, 3000);
 
-  //   return () => clearTimeout(timer);
-  // }, [navgiate]);
+    return () => clearTimeout(timer);
+  }, [navgiate]);
 
   return (
     <SplashScreenStyled>

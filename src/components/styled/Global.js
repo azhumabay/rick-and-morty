@@ -10,6 +10,6 @@ const GlobalStyles = createGlobalStyle`
         background-color: ${(props) => props.theme.colors.background};
         font-family: "Roboto", sans-serif;
     }
-`;
+`;  
 
 export default GlobalStyles;
