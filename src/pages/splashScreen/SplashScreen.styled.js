@@ -20,12 +20,11 @@ const slideDown = keyframes`
 `;
 
 const SplashScreenStyled = styled.div`
-  height: 100svh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  overflow: hidden;
   background-color: rgba(11, 30, 45, 1);
 `;
 
@@ -33,7 +32,7 @@ const SplashScreenBackground = styled.div`
   position: absolute;
   left: 0;
   top: 0;
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
 
   opacity: 0.2;
