@@ -31,11 +31,12 @@ export default function CharactersPage() {
   } = useCharacterStore();
   const { isSearchOpen, openFilter, isFilterOpen } = useSearchStore();
   const { isGridView, toggleGridView } = useThemeStore();
-  const [currentPage, setCurrentPage] = useState(1);
   const [searchParams] = useSearchParams();
+  const initialPage = Number(searchParams.get("page")) || 1;
+  const [currentPage, setCurrentPage] = useState(initialPage);
 
   useEffect(() => {
-    const page = searchParams.get("page") || 1;
+    const page = Number(searchParams.get("page")) || 1;
     setCurrentPage(page);
   }, [searchParams]);
 

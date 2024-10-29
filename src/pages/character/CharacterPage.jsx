@@ -43,6 +43,7 @@ export default function CharacterPage() {
 
   useEffect(() => {
     fetchCharacter(id);
+    window.scrollTo(0, 0);
 
     return () => {
       resetCharacter();

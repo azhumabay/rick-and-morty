@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { characterService } from "../api";
 
-const useCharacterStore = create((set) => ({
+const useCharacterStore = create((set, get) => ({
   listData: [],
   character: {},
   error: null,
@@ -10,6 +10,7 @@ const useCharacterStore = create((set) => ({
   searchName: "",
   gender: "",
   status: "",
+  lastParams: null,
 
   setSearchName: (name) => set({ searchName: name }),
   setGender: (queryGender) => set({ gender: queryGender }),
@@ -17,6 +18,13 @@ const useCharacterStore = create((set) => ({
   resetCharacter: () => set({ character: {} }),
 
   fetchList: async (params) => {
+    const { lastParams } = get();
+
+    if (lastParams === params) {
+      return;
+    }
+
+    set({ lastParams: params });
     set({ loading: true, error: null });
     try {
       const result = await characterService.getCharacterList(params);
