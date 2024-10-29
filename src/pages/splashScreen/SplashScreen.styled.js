@@ -26,6 +26,7 @@ const SplashScreenStyled = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: rgba(11, 30, 45, 1);
+  overflow: hidden;
 `;
 
 const SplashScreenBackground = styled.div`
