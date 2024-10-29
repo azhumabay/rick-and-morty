@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import splashScreenBackground from "@assets/images/splashScreenBackground.png";
 
 const slideUp = keyframes`
   from {
@@ -19,12 +20,24 @@ const slideDown = keyframes`
 `;
 
 const SplashScreenStyled = styled.div`
-  min-height: 100dvh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
+  background-color: rgba(11, 30, 45, 1);
+`;
+
+const SplashScreenBackground = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+
+  opacity: 0.2;
+  background: url(${splashScreenBackground});
 `;
 
 const SplashScreenTitle = styled.img`
@@ -52,4 +65,5 @@ export {
   SplashScreenTitle,
   SplashScreenMorty,
   SplashScreenRick,
+  SplashScreenBackground,
 };

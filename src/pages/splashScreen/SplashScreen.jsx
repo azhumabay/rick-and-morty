@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import APP_PATH from "../../const/router";
 import {
+  SplashScreenBackground,
   SplashScreenMorty,
   SplashScreenRick,
   SplashScreenStyled,
@@ -24,6 +25,7 @@ export default function SplashScreen() {
 
   return (
     <SplashScreenStyled>
+      <SplashScreenBackground />
       <SplashScreenTitle src={splashTitle} />
       <SplashScreenMorty src={splashMorty} />
       <SplashScreenRick src={splashRick} />
