@@ -19,7 +19,7 @@ const slideDown = keyframes`
 `;
 
 const SplashScreenStyled = styled.div`
-  height: 100dvh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
