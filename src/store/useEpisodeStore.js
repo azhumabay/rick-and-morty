@@ -1,17 +1,25 @@
 import { create } from "zustand";
 import { episodeService } from "../api";
 
-const useEpisodeStore = create((set) => ({
+const useEpisodeStore = create((set, get) => ({
   listData: [],
   episode: null,
   loading: false,
   error: false,
   searchName: "",
+  lastParams: null,
 
   setSearchName: (name) => set({ searchName: name }),
   resetEpisode: () => set({ episode: [] }),
 
   fetchList: async (params) => {
+    const { lastParams } = get();
+
+    if (lastParams === params) {
+      return;
+    }
+
+    set({ lastParams: params });
     set({ loading: true, error: null });
     try {
       const result = await episodeService.getEpisodeList(params);

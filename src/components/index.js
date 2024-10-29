@@ -8,5 +8,7 @@ export { default as CharacterListSkeleton } from "./skeleton/CharacterListSkelet
 
 export { default as LocationList } from "./location/LocationList";
 export { default as LocationFilter } from "./location/LocationFilter";
+export { default as LocationListSkeleton } from "./skeleton/LocationListSkeleton";
 
 export { default as EpisodeList } from "./episode/EpisodeList";
+export { default as EpisodeListSkeleton } from "./skeleton/EpisodeListSkeleton";

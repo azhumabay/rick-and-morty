@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { EpisodeList, Pagination, Search } from "../../components";
+import {
+  EpisodeList,
+  EpisodeListSkeleton,
+  Pagination,
+  Search,
+} from "../../components";
 import { useEpisodeStore, useSearchStore } from "../../store";
 import { useSearchParams } from "react-router-dom";
 import {
@@ -11,13 +16,15 @@ import episodeNotFound from "@assets/images/episodeNotFound.svg";
 
 export default function EpisodeListPage() {
   const { isSearchOpen } = useSearchStore();
-  const { searchName, setSearchName, fetchList, listData, error } =
+  const { loading, searchName, setSearchName, fetchList, listData, error } =
     useEpisodeStore();
-  const [currentPage, setCurrentPage] = useState(1);
   const [searchParams] = useSearchParams();
 
+  const getPageFromParams = () => Number(searchParams.get("page")) || 1;
+  const [currentPage, setCurrentPage] = useState(getPageFromParams);
+
   useEffect(() => {
-    setCurrentPage(searchParams.get("page") || 1);
+    setCurrentPage(getPageFromParams());
   }, [searchParams]);
 
   useEffect(() => {
@@ -41,7 +48,11 @@ export default function EpisodeListPage() {
 
       {!error ? (
         <EpisodeListContent>
-          <EpisodeList list={episodeList} />
+          {loading ? (
+            <EpisodeListSkeleton cards={8} />
+          ) : (
+            <EpisodeList list={episodeList} />
+          )}
           <Pagination pages={info?.pages} currentPage={currentPage} />
         </EpisodeListContent>
       ) : (

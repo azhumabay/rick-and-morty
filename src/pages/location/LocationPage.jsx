@@ -14,10 +14,12 @@ import { CharacterList } from "../../components";
 import locationPlaceholder from "@assets/images/locationPlaceholder.png";
 import leftArrow from "@assets/images/leftArrow.svg";
 import useLocationStore from "../../store/useLocationStore";
+import Skeleton from "react-loading-skeleton";
 
 export default function LocationPage() {
-  const { fetchCharacter } = useCharacterStore();
-  const { location, fetchLocation, resetLocation } = useLocationStore();
+  const { fetchCharacter, loading: characterLoading } = useCharacterStore();
+  const { location, fetchLocation, resetLocation, loading } =
+    useLocationStore();
   const [characterList, setCharacterList] = useState(null);
 
   const { id } = useParams();
@@ -59,23 +61,46 @@ export default function LocationPage() {
 
   return (
     <>
-      <LocationImg src={locationPlaceholder} />
+      {loading ? (
+        <Skeleton
+          height={298}
+          width="100%"
+          style={{ position: "absolute", left: 0 }}
+        />
+      ) : (
+        <LocationImg src={locationPlaceholder} />
+      )}
       <LocationBack onClick={goBack} src={leftArrow} />
       <LocationMain>
         <LocationTitle>
-          <h2>{location?.name}</h2>
+          <h2>{location.name || <Skeleton height={32} width={180} />}</h2>
           <div>
-            {typeRus} <span>&#183; </span>
-            {dimensionRus}
+            {loading ? (
+              <>
+                <Skeleton width={26} height={16} />
+                <span>&#183;</span>
+                <Skeleton width={105} height={16} />
+              </>
+            ) : (
+              <>
+                {typeRus} <span>&#183;</span> {dimensionRus}
+              </>
+            )}
           </div>
         </LocationTitle>
 
-        {characterList && characterList.length > 0 && (
-          <LocationResidents>
-            <h2>Персонажи</h2>
-            <CharacterList list={characterList} />
-          </LocationResidents>
-        )}
+        <LocationResidents>
+          {characterList?.length > 0 && <h2>Персонажи</h2>}
+          {characterLoading ? (
+            <Skeleton width="100%" height={74} />
+          ) : (
+            <>
+              {characterList && characterList.length > 0 && (
+                <CharacterList list={characterList} />
+              )}
+            </>
+          )}
+        </LocationResidents>
       </LocationMain>
     </>
   );

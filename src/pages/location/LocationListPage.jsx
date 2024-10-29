@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import {
   LocationFilter,
   LocationList,
+  LocationListSkeleton,
   Pagination,
   Search,
 } from "../../components";
@@ -18,13 +19,22 @@ import locationNotFound from "@assets/images/locationNotFound.svg";
 
 export default function LocationPage() {
   const { isSearchOpen, isFilterOpen, openFilter } = useSearchStore();
-  const { type, searchName, setSearchName, listData, fetchList, error } =
-    useLocationStore();
-  const [currentPage, setCurrentPage] = useState(1);
+  const {
+    type,
+    searchName,
+    setSearchName,
+    listData,
+    fetchList,
+    loading,
+    error,
+  } = useLocationStore();
+
   const [searchParams] = useSearchParams();
+  const initalPage = searchParams.get("page") || 1;
+  const [currentPage, setCurrentPage] = useState(initalPage);
 
   useEffect(() => {
-    setCurrentPage(searchParams.get("page") || 1);
+    setCurrentPage(searchParams.get("page") || initalPage);
   }, [searchParams, setCurrentPage]);
 
   useEffect(() => {
@@ -65,7 +75,11 @@ export default function LocationPage() {
           <LocationInfo>ВСЕГО ЛОКАЦИЙ: {info.count}</LocationInfo>
 
           <LocationListContent $isSearchOpen={isSearchOpen}>
-            <LocationList locationList={locationList} />
+            {loading ? (
+              <LocationListSkeleton cards={4} />
+            ) : (
+              <LocationList locationList={locationList} />
+            )}
             <Pagination pages={info.pages} currentPage={currentPage} />
           </LocationListContent>
         </>

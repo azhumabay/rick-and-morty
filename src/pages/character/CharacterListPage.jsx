@@ -36,7 +36,7 @@ export default function CharactersPage() {
   const [currentPage, setCurrentPage] = useState(initialPage);
 
   useEffect(() => {
-    const page = Number(searchParams.get("page")) || 1;
+    const page = Number(searchParams.get("page")) || initialPage;
     setCurrentPage(page);
   }, [searchParams]);
 
