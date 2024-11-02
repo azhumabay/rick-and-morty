@@ -19,8 +19,8 @@ const useLocationStore = create((set, get) => ({
     if (lastParams === params) {
       return;
     }
-
     set({ lastParams: params });
+
     set({ loading: true, error: null });
     try {
       const result = await locationService.getLocationList(params);

@@ -7,14 +7,14 @@ import {
   FilterLogo,
   OpenSearchWrapper,
 } from "./Search.styled";
-import { debounce } from "lodash";
 import search from "@assets/images/search.svg";
 import filter from "@assets/images/filter.svg";
 
 import { CloseIcon, LeftArrow } from "../Icons";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useSearchStore } from "../../store";
+import useDebounce from "../../use/useDebounce";
 
 export default function Search({
   placeholder,
@@ -23,11 +23,12 @@ export default function Search({
   openFilter,
   setCurrentPage,
 }) {
+  const { isSearchOpen, openSearch, closeSearch } = useSearchStore();
   const [input, setInput] = useState("");
+  const debouncedInput = useDebounce(input, 800);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { isSearchOpen, openSearch, closeSearch } = useSearchStore();
 
   const searchInputRef = useRef(null);
 
@@ -35,15 +36,19 @@ export default function Search({
     if (isSearchOpen) {
       if (searchInputRef.current) searchInputRef.current.focus();
     } else {
-      debounceOnChange.cancel();
       setInput("");
     }
 
     return () => {
-      debounceOnChange.cancel();
       setInput("");
     };
   }, [isSearchOpen]);
+
+  useEffect(() => {
+    setName(debouncedInput);
+    setCurrentPage(1);
+    setSearchParams({});
+  }, [debouncedInput]);
 
   const closeSearchHandler = () => {
     closeSearch();
@@ -61,18 +66,8 @@ export default function Search({
     setSearchParams({});
   };
 
-  const debounceOnChange = useCallback(
-    debounce((value) => {
-      setName(value);
-      setCurrentPage(1);
-      setSearchParams({});
-    }, 800),
-    []
-  );
-
   const handleInputChange = (e) => {
     setInput(e.target.value);
-    debounceOnChange(e.target.value);
   };
 
   return (
