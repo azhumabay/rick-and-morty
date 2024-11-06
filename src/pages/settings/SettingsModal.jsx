@@ -5,8 +5,6 @@ import {
   SettingsModalItem,
   SettingsModalClose,
 } from "./Settings.styled";
-import selected from "@assets/images/selected.svg";
-import deselected from "@assets/images/deselected.svg";
 import useThemeStore from "../../store/useThemeStore";
 
 export default function SettingsModal({ toggleModal }) {
@@ -24,12 +22,12 @@ export default function SettingsModal({ toggleModal }) {
         <h2>Темная тема</h2>
 
         <SettingsModalItem onClick={setLightTheme}>
-          <SettingsModalRadio src={isDarkMode ? deselected : selected} />
+          <SettingsModalRadio $isDarkMode={!isDarkMode} />
           <p>Выключена</p>
         </SettingsModalItem>
 
         <SettingsModalItem onClick={setDarkTheme}>
-          <SettingsModalRadio src={isDarkMode ? selected : deselected} />
+          <SettingsModalRadio $isDarkMode={isDarkMode} />
           <p>Включена</p>
         </SettingsModalItem>
 

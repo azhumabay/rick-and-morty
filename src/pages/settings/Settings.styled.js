@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const SettingsHeader = styled.div`
   margin-top: 12px;
@@ -77,9 +77,32 @@ const SettingsModalWrapper = styled.div`
   }
 `;
 
-const SettingsModalRadio = styled.img`
+const SettingsModalRadio = styled.div`
   width: 24px;
   height: 24px;
+  border: 3px solid
+    ${({ $isDarkMode }) =>
+      $isDarkMode ? "rgba(34, 162, 189, 1)" : "rgba(91, 105, 117, 1)"};
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  ${({ $isDarkMode }) =>
+    $isDarkMode &&
+    css`
+      &::after {
+        content: "";
+        display: block;
+        background-color: rgba(34, 162, 189, 1);
+        position: absolute;
+        border-radius: 50%;
+        width: 63%;
+        height: 63%;
+      }
+    `}
 `;
 
 const SettingsModalItem = styled.div`
