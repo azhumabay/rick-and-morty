@@ -84,10 +84,6 @@ const SettingsModalRadio = styled.div`
     ${({ $isDarkMode }) =>
       $isDarkMode ? "rgba(34, 162, 189, 1)" : "rgba(91, 105, 117, 1)"};
   border-radius: 50%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
 
   ${({ $isDarkMode }) =>
@@ -99,8 +95,13 @@ const SettingsModalRadio = styled.div`
         background-color: rgba(34, 162, 189, 1);
         position: absolute;
         border-radius: 50%;
+
         width: 63%;
         height: 63%;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     `}
 `;
