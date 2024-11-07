@@ -24,7 +24,7 @@ export default function Search({
   setCurrentPage,
 }) {
   const { isSearchOpen, openSearch, closeSearch } = useSearchStore();
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(localStorage.getItem("searchInput") || "");
   const debouncedInput = useDebounce(input, 800);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -39,15 +39,15 @@ export default function Search({
       setInput("");
     }
 
-    return () => {
-      setInput("");
-    };
-  }, [isSearchOpen]);
+    if (input) {
+      localStorage.setItem("searchInput", input);
+    } else {
+      localStorage.removeItem("searchInput");
+    }
+  }, [isSearchOpen, input]);
 
   useEffect(() => {
     setName(debouncedInput);
-    setCurrentPage(1);
-    setSearchParams({});
   }, [debouncedInput]);
 
   const closeSearchHandler = () => {
